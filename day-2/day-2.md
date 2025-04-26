@@ -134,3 +134,120 @@ Manages errors during execution.
 - Ensure `break` is used in `switch` cases to prevent fall-through unless intentional.
 
 If you need examples or deeper explanation on any specific control structure, let me know!
+
+---
+Nested statements in JavaScript involve placing one flow control structure (like `if`, `for`, `while`, etc.) inside another. This allows for more complex logic by evaluating multiple conditions or iterating over nested data. Below are examples of nested statements, focusing on common use cases.
+
+### 1. **Nested `if` Statements**
+An `if` statement inside another `if` statement to check multiple conditions.
+
+```javascript
+let age = 25;
+let hasLicense = true;
+
+if (age >= 18) {
+  if (hasLicense) {
+    console.log("You can drive.");
+  } else {
+    console.log("You need a license to drive.");
+  }
+} else {
+  console.log("You are too young to drive.");
+}
+// Output: You can drive.
+```
+
+### 2. **Nested `for` Loops**
+A `for` loop inside another `for` loop, often used for iterating over multi-dimensional arrays or generating combinations.
+
+```javascript
+// Print a 3x3 grid
+for (let i = 1; i <= 3; i++) {
+  for (let j = 1; j <= 3; j++) {
+    console.log(`Row ${i}, Col ${j}`);
+  }
+}
+/* Output:
+Row 1, Col 1
+Row 1, Col 2
+Row 1, Col 3
+Row 2, Col 1
+Row 2, Col 2
+Row 2, Col 3
+Row 3, Col 1
+Row 3, Col 2
+Row 3, Col 3
+*/
+```
+
+### 3. **Nested `while` Loops**
+A `while` loop inside another `while` loop, useful when conditions are dynamic.
+
+```javascript
+let i = 1;
+while (i <= 3) {
+  let j = 1;
+  while (j <= 2) {
+    console.log(`i=${i}, j=${j}`);
+    j++;
+  }
+  i++;
+}
+/* Output:
+i=1, j=1
+i=1, j=2
+i=2, j=1
+i=2, j=2
+i=3, j=1
+i=3, j=2
+*/
+```
+
+### 4. **Mixed Nesting (e.g., `if` inside `for`)**
+Combining different control structures, like checking conditions within a loop.
+
+```javascript
+// Print even numbers in a range
+for (let i = 1; i <= 5; i++) {
+  if (i % 2 === 0) {
+    console.log(`${i} is even`);
+  }
+}
+// Output:
+// 2 is even
+// 4 is even
+```
+
+### 5. **Nested `try...catch`**
+Handling errors within specific blocks of code inside another error-handling block.
+
+```javascript
+try {
+  let data = JSON.parse('{"name": "John"}');
+  try {
+    if (!data.age) {
+      throw new Error("Age is missing");
+    }
+  } catch (innerError) {
+    console.log("Inner error:", innerError.message);
+  }
+} catch (outerError) {
+  console.log("Outer error:", outerError.message);
+}
+// Output: Inner error: Age is missing
+```
+
+### Key Points:
+- **Readability**: Deep nesting can make code harder to read. Consider refactoring using functions or early returns.
+- **Performance**: Nested loops can lead to high time complexity (e.g., O(n²) for two nested loops). Optimize where possible.
+- **Scope**: Variables declared in inner blocks (e.g., with `let`) are scoped to that block, avoiding conflicts.
+- **Break/Continue**: In nested loops, `break` or `continue` affects only the innermost loop unless labeled.
+  ```javascript
+  outer: for (let i = 1; i <= 3; i++) {
+    for (let j = 1; j <= 3; j++) {
+      if (i === 2 && j === 2) break outer; // Breaks outer loop
+    }
+  }
+  ```
+
+If you want a specific type of nested statement (e.g., nested `switch`, nested loops with arrays), or need help with a particular use case, let me know!
