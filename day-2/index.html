@@ -3,11 +3,88 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .red {
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .blue {
+        background-color: blue;
+        border-radius: 20px;
+
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+      }
+      .green {
+        background-color: green;
+        border-radius: 20px;
+
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+      }
+      .clear {
+        background-color: white;
+        border-radius: 20px;
+
+        color: rgb(50, 50, 50);
+        border: 1px solid black;
+        padding: 10px 20px;
+        margin-top: 20px;
+        margin-left: 60px;
+        cursor: pointer;
+      }
+
+      .color-change {
+        width: 200px;
+        height: 200px;
+        margin-top: 20px;
+        border-radius: 20px;
+        margin-left: 10px;
+
+        border: 1px solid #000;
+      }
+      .change-1 {
+        position: absolute;
+        right: 10px;
+        bottom: 20px;
+      }
+    </style>
     <title>Document</title>
   </head>
   <body>
+    <button onclick="handleClick()">Click me</button>
+    <p id="demo"></p>
+    <button onclick="this.innerHTML = 'Downloaded'">Download</button>
+    <hr />
+    <button class="red">Red</button>
+    <button class="blue">Blue</button>
+    <button class="green">Green</button>
+    <div class="color-change"></div>
+    <button class="clear">Clear</button>
+    <p id="copyableText">
+      Select and copy this text to trigger the copy event!
+    </p>
+
+    <img
+      class="change-1"
+      src="events-js/chat-c-(1).png"
+      id="myImage"
+      onmouseover="hoverImage()"
+      onmouseout="unhoverImage()"
+    />
+
     <!-- <script src="main.js"></script> -->
     <!-- <script src="arrays/arrays.js"></script> -->
-    <script src="objects/object.js"></script>
+    <!-- <script src="objects/object.js"></script> -->
+    <script src="events-js/event.js"></script>
   </body>
 </html>
