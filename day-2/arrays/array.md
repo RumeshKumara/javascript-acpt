@@ -398,7 +398,6 @@ Using `const` communicates to other developers (and your future self) that the v
   ```javascript
   const calculateTotal = (items) => items.reduce((sum, item) => sum + item.price, 0);
   ```
-
 ### 3. **Aligns with Modern JavaScript Best Practices**
 Modern JavaScript coding standards (e.g., those promoted by ESLint, Airbnb’s style guide, or TypeScript) recommend using `const` by default unless reassignment is explicitly needed. This is because:
 
