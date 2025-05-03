@@ -170,32 +170,6 @@ additionInput.onkeyup = function () {
     display.style.color = 'purple';
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Create a "Go to Top" button dynamically
 const goToTopButton = document.createElement('div');
 goToTopButton.className = 'upArrow hidden'; // Add 'hidden' class initially
@@ -218,4 +192,19 @@ goToTopButton.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+
+const inputElement = document.getElementById("generateInput");
+const count = parseInt(inputElement.value) || 50;
+const randomNumbers = Array.from({ length: count }, () => Math.floor(Math.random() * 100) + 1);
+const randomDisplay = document.getElementById("randomDisplay");
+randomDisplay.textContent = `${randomNumbers.join(', ')}`;
+
+const generateInput = document.getElementById('generateInput');
+
+function generateRandomNumbers() {
+    const counts = parseInt(generateInput.value)
+    const divisible = randomNumbers.filter(num => num % counts === 0);
+    const display = document.getElementById("display-8");
+    display.textContent = `${divisible.join(', ')}`;
+}
 
