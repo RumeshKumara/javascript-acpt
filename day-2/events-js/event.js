@@ -35,3 +35,16 @@ function unhoverImage() {
 function showAlert() {
     alert("This is an alert message!");
 }
+
+function keyDownEvent() {
+    const text = document.getElementById("myInput").value
+    // console.log(text);
+}
+function keyUpEvent() {
+    const text = document.getElementById("myInput").value
+    console.log(text);
+}
+function keyPressEvent() {
+    const text = document.getElementById("myInput").value
+    // console.log(text);
+}
