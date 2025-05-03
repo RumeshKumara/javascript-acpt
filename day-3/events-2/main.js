@@ -121,3 +121,101 @@ function meaningResult() {
     }
 }
 
+const numberArray = [];
+
+function pushData() {
+    const numberInputElement = document.getElementById("numberInput-3");
+    const numberInput = numberInputElement.value;
+
+    numberArray.push(parseFloat(numberInput));
+    numberInputElement.value = "";
+}
+
+function ShowData() {
+    const display = document.getElementById("display-7");
+
+    display.textContent = `Stored Numbers: ${numberArray}`;
+    display.style.color = 'purple';
+}
+
+
+
+function firstLetterResult() {
+    const firstLetterInput = document.getElementById("firstLetterInput").value.trim();
+    const display = document.getElementById("display-5");
+    display.style.color = 'purple';
+
+    if (firstLetterInput === "") {
+        display.textContent = "Please enter something.";
+    } else {
+        const formattedString = firstLetterInput
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+        display.textContent = `Formatted String: ${formattedString}`;
+
+    }
+}
+
+// Add keyup event for sum of digits
+const additionInput = document.getElementById("AdditionInput");
+additionInput.onkeyup = function () {
+    const inputValue = additionInput.value;
+    const sum = inputValue
+        .split('')
+        .reduce((acc, digit) => acc + parseInt(digit), 0);
+
+    const display = document.getElementById("display-6");
+    display.textContent = `Sum of Digits: ${sum}`;
+    display.style.color = 'purple';
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Create a "Go to Top" button dynamically
+const goToTopButton = document.createElement('div');
+goToTopButton.className = 'upArrow hidden'; // Add 'hidden' class initially
+goToTopButton.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+document.body.appendChild(goToTopButton);
+
+// Show/hide the button based on scroll position
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+        goToTopButton.classList.remove('hidden');
+    } else {
+        goToTopButton.classList.add('hidden');
+    }
+});
+
+// Smooth scroll to the top when the button is clicked
+goToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+

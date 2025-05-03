@@ -10,6 +10,14 @@
       integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
     <style>
       h2 {
         align-items: center;
@@ -27,9 +35,31 @@
         font-size: 20px;
         border-radius: 5px;
       }
+      .upArrow {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: rgb(231, 1, 104);
+        padding: 15px 20px;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        transition: all 0.5s ease-in-out;
+      }
+      .upArrow i {
+        font-size: 20px;
+      }
+      .hidden {
+        transition: all 0.5s ease-in-out;
+        opacity: 0;
+        display: none;
+      }
     </style>
   </head>
   <body>
+    <div class="upArrow hidden">
+      <i class="fa-solid fa-arrow-up"></i>
+    </div>
     <h1 class="text-center text-warning mb-5" style="color: blue">Tasks</h1>
 
     <div
@@ -190,6 +220,79 @@
       >
         Submit
       </button>
+    </div>
+    <hr />
+    <div
+      class="card w-50 mx-auto p-4 text-center align-items-center border-1 border-primary"
+    >
+      <h2 class="pb-2" style="color: rgb(1, 70, 231)">
+        Task <span>7</span> (Fist letter Capitalize)
+      </h2>
+      <input
+        type="text"
+        class="form-control mb-3"
+        id="firstLetterInput"
+        placeholder="Enter Something"
+      />
+      <h5 id="display-5" class="p-2"></h5>
+
+      <button
+        type="button"
+        class="btn btn-primary w-25"
+        id="submitButton"
+        onclick="firstLetterResult()"
+      >
+        Submit
+      </button>
+    </div>
+    <hr />
+    <div
+      class="card w-50 mx-auto p-4 text-center align-items-center border-1 border-primary"
+    >
+      <h2 class="pb-2" style="color: rgb(1, 70, 231)">
+        Task <span>8</span> (Sum of Digits)
+      </h2>
+      <input
+        type="number"
+        class="form-control mb-3"
+        id="AdditionInput"
+        placeholder="Enter"
+      />
+      <h5 id="display-6" class="p-2"></h5>
+    </div>
+    <hr />
+    <div
+      class="card w-50 mx-auto p-4 text-center align-items-center border-1 border-primary"
+    >
+      <h2 class="pb-2" style="color: rgb(1, 70, 231)">
+        Task <span>9</span> (Find Meaning)
+      </h2>
+      <input
+        type="number"
+        class="form-control mb-3"
+        id="numberInput-3"
+        placeholder="Enter a number"
+      />
+      <h5 id="display-7" class="p-2"></h5>
+
+      <div class="d-flex gap-2">
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="pushButton"
+          onclick="pushData()"
+        >
+          Push
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="submitButton"
+          onclick="ShowData()"
+        >
+          Submit
+        </button>
+      </div>
     </div>
 
     <script
