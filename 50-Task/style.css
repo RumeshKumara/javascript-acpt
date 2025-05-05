@@ -3,9 +3,29 @@ body{
     font-family: Arial, sans-serif;
     padding: 0;
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
     
 }
+
+.upArrow {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgb(120, 1, 231);
+    padding: 15px 20px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+  }
+  .upArrow i {
+    font-size: 20px;
+  }
+  .hidden {
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+    display: none;
+  }
 hr{
     border: 1px solid #494949;
     width: 100%;
@@ -66,7 +86,7 @@ input[type="text"]{
 
 input[type="text"]:focus{
     outline: none;
-    border: 1px solid #ffea2d;
+    border: 1px solid #992dff;
 }
 button{
     background-color: #882dff;
@@ -84,4 +104,24 @@ button:hover{
 }
 .io{
     color: #ffffff;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+    width: 5px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e1e1e;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #882dff;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5d00d6;
 }
