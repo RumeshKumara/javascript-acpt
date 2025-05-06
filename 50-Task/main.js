@@ -22,6 +22,8 @@ goToTopButton.addEventListener('click', () => {
 });
 
 
+// ! Task 1: Create a form to search for attractions in Colombo
+
 document.getElementById("attraction-form").onsubmit = function (event) {
     event.preventDefault(); // Prevent form from refreshing the page
 
@@ -50,3 +52,87 @@ document.getElementById("attraction-form").onsubmit = function (event) {
         attractionDetails.textContent = "Attraction not found. Please try another name.";
     }
 };
+
+// ! Task 2: 
+function submitForm() {
+    const email = document.getElementById('email').value;
+    const monsoonAlerts = document.getElementById('monsoonAlerts').checked;
+    const confirmationDiv = document.getElementById('confirmation');
+
+    if (!email) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    confirmationDiv.style.display = 'block';
+    confirmationDiv.textContent = monsoonAlerts
+        ? `Thank you! You have subscribed to Monsoon Alerts with email: ${email}.`
+        : `Thank you! Your email ${email} has been recorded.`;
+}
+
+// ! Task 3:
+let plantations = [];
+
+function addPlantation() {
+    const name = document.getElementById('name').value;
+    const region = document.getElementById('region').value;
+    const production = document.getElementById('production').value;
+
+    if (!name || !region || !production) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    const plantation = {
+        name: name,
+        region: region,
+        production: parseInt(production)
+    };
+
+    plantations.push(plantation);
+    updatePlantationList();
+
+    document.getElementById('name').value = '';
+    document.getElementById('region').value = '';
+    document.getElementById('production').value = '';
+}
+
+function updatePlantationList() {
+    const listDiv = document.getElementById('plantationList');
+    listDiv.innerHTML = '';
+
+    plantations.forEach(plantation => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'plantation-item';
+        itemDiv.textContent = `${plantation.name} - ${plantation.region}, Production: ${plantation.production} kg`;
+        listDiv.appendChild(itemDiv);
+        itemDiv.style.color = 'white'; // Set text color to black
+    });
+}
+
+// ! Task 4:
+const festivalDates = {
+    "Vesak": "2025-05-12",
+    "Sinhala New Year": "2025-04-14"
+};
+
+function checkFestivalDate() {
+    const selectedDate = document.getElementById('festivalDate').value;
+    const selectedFestival = document.querySelector('input[name="festival"]:checked');
+    const resultDiv = document.getElementById('result');
+
+    if (!selectedDate || !selectedFestival) {
+        resultDiv.textContent = "Please select a date and a festival.";
+        return;
+    }
+
+    const correctDate = festivalDates[selectedFestival.value];
+
+    if (selectedDate === correctDate) {
+        resultDiv.textContent = `Correct! ${selectedFestival.value} is on ${correctDate}.`;
+        resultDiv.style.color = "green";
+    } else {
+        resultDiv.textContent = `Incorrect. ${selectedFestival.value} is on ${correctDate}, not ${selectedDate}.`;
+        resultDiv.style.color = "red";
+    }
+}

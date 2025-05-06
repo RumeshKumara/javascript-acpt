@@ -34,6 +34,7 @@
     >
       50 Tasks for JavaScript
     </h1>
+    <!--! START-1 -->
     <div class="box">
       <h1>Colombo Tourist Attractions <span>Task - 01</span></h1>
       <form id="attraction-form">
@@ -47,41 +48,168 @@
       </form>
       <div id="attraction-details" class="io"></div>
     </div>
+    <!--! END -->
+
     <hr />
-    <div class="upArrow hidden">
-      <i class="fa-solid fa-arrow-up"></i>
-    </div>
+
+    <!--! START-2 -->
     <div class="box">
-      <h1>Colombo Tourist Attractions <span>Task - 01</span></h1>
+      <h1>Weather Alert Subscription <span>Task - 02</span></h1>
       <form id="attraction-form">
-        <label for="attraction-input">Enter Attraction Name:</label>
-        <input
-          type="text"
-          id="attraction-input"
-          placeholder="e.g., Galle Face Green"
-        />
-        <button type="submit">Search</button>
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="monsoonAlerts" /> Subscribe for Monsoon
+            Alerts
+          </label>
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+        <button onclick="submitForm()">Submit</button>
       </form>
-      <div id="attraction-details" class="io"></div>
+      <div id="confirmation"></div>
     </div>
+    <!--! END -->
+
     <hr />
-    <div class="upArrow hidden">
-      <i class="fa-solid fa-arrow-up"></i>
-    </div>
+
+    <!--! START-3 -->
     <div class="box">
-      <h1>Colombo Tourist Attractions <span>Task - 01</span></h1>
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
       <form id="attraction-form">
-        <label for="attraction-input">Enter Attraction Name:</label>
-        <input
-          type="text"
-          id="attraction-input"
-          placeholder="e.g., Galle Face Green"
-        />
-        <button type="submit">Search</button>
+        <div class="form-group">
+          <label for="name">Plantation Name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter plantation name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="region">Region</label>
+          <input type="text" id="region" placeholder="Enter region" required />
+        </div>
+        <div class="form-group">
+          <label for="production">Annual Production (kg)</label>
+          <input
+            type="number"
+            id="production"
+            placeholder="Enter production"
+            required
+          />
+        </div>
+        <button onclick="addPlantation()">Add Plantation</button>
       </form>
-      <div id="attraction-details" class="io"></div>
+      <div id="plantationList"></div>
     </div>
+    <!--! END -->
+
     <hr />
+
+    <!--! START-4 -->
+    <div class="box">
+      <h1>Festival Date Checker <span>Task - 04</span></h1>
+      <form id="attraction-form">
+        <div class="form-group">
+          <label for="festivalDate">Select Date</label>
+          <input type="date" id="festivalDate" required />
+        </div>
+        <div class="form-group">
+          <label>Select Festival</label>
+          <div class="radio-group">
+            <label
+              ><input type="radio" name="festival" value="Vesak" required />
+              Vesak</label
+            >
+            <label
+              ><input type="radio" name="festival" value="Sinhala New Year" />
+              Sinhala New Year</label
+            >
+          </div>
+        </div>
+        <button onclick="checkFestivalDate()">Check Date</button>
+      </form>
+      <div id="result"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+    <!--! START-3 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form">
+        <div class="form-group">
+          <label for="name">Plantation Name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter plantation name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="region">Region</label>
+          <input type="text" id="region" placeholder="Enter region" required />
+        </div>
+        <div class="form-group">
+          <label for="production">Annual Production (kg)</label>
+          <input
+            type="number"
+            id="production"
+            placeholder="Enter production"
+            required
+          />
+        </div>
+        <button onclick="addPlantation()">Add Plantation</button>
+      </form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-3 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form">
+        <div class="form-group">
+          <label for="name">Plantation Name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter plantation name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="region">Region</label>
+          <input type="text" id="region" placeholder="Enter region" required />
+        </div>
+        <div class="form-group">
+          <label for="production">Annual Production (kg)</label>
+          <input
+            type="number"
+            id="production"
+            placeholder="Enter production"
+            required
+          />
+        </div>
+        <button onclick="addPlantation()">Add Plantation</button>
+      </form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START -->
+
     <script src="main.js"></script>
   </body>
 </html>

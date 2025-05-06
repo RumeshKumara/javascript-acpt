@@ -35,7 +35,7 @@ span{
     color: #b255ff;
     font-weight: bold;
     background-color: #39006863;
-    padding: 6px;
+    padding: 8px;
     border-radius: 5px;
     font-size: large;
 }
@@ -63,17 +63,28 @@ h1{
     border-radius: 10px;
     border-bottom: 2px solid #882dff;
 }
+.radio-group{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+label{
+    color: rgb(221, 221, 221);
+    font-size: 1.2em;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 5px
+}
 form{
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 100%;
 }
-label{
-    color: #ffffff;
-    font-size: 1.2em;
-}
-input[type="text"]{
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], [type="date"]{
     width: 100%;
     padding: 10px;
     border-radius: 5px;
@@ -82,9 +93,10 @@ input[type="text"]{
     color: #d6d6d6;
     max-width: 500px;
     border: none;
+    accent-color: #882dff;
 }
 
-input[type="text"]:focus{
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus, [type="date"]:focus{
     outline: none;
     border: 1px solid #992dff;
 }
@@ -92,7 +104,7 @@ button{
     background-color: #882dff;
     color: #ffffff;
     padding: 10px 20px;
-    max-width: 100px;
+    max-width: 200px;
     border: none;
     border-radius: 5px;
     font-size: 1em;
