@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="myButton">Click me</button>
+    <input id="myInput" type="text" placeholder="Type something..." />
+    <script>
+      // Select elements
+      const button = document.querySelector("#myButton");
+      const input = document.querySelector("#myInput");
+
+      // Click event (Mouse event)
+      button.addEventListener("click", (event) => {
+        alert(`Button clicked! Target: ${event.target.tagName}`);
+      });
+
+      // Mouseover event
+      button.addEventListener("mouseover", () => {
+        button.style.backgroundColor = "lightblue";
+      });
+
+      // Mouseout event
+      button.addEventListener("mouseout", () => {
+        button.style.backgroundColor = "";
+      });
+
+      // Input event (Form event)
+      input.addEventListener("input", (event) => {
+        console.log(`Input value: ${event.target.value}`);
+      });
+
+      // Keydown event (Keyboard event)
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          alert(`You pressed Enter! Input: ${input.value}`);
+        }
+      });
+
+      // Page load event (Window event)
+      window.addEventListener("load", () => {
+        console.log("Page fully loaded!");
+      });
+    </script>
+  </body>
+</html>
