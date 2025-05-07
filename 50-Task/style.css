@@ -95,6 +95,16 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
     border: none;
     accent-color: #882dff;
 }
+textarea{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #230a38;
+    color: #d6d6d6;
+    max-width: 500px;
+    border: none;
+}
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus, [type="date"]:focus{
     outline: none;
@@ -116,6 +126,20 @@ button:hover{
 }
 .io{
     color: #ffffff;
+}
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+#orderSummary {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    display: none;
 }
 
 /* Scrollbar styles */

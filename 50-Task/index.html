@@ -55,7 +55,7 @@
     <!--! START-2 -->
     <div class="box">
       <h1>Weather Alert Subscription <span>Task - 02</span></h1>
-      <form id="attraction-form">
+      <form id="">
         <div class="form-group">
           <label>
             <input type="checkbox" id="monsoonAlerts" /> Subscribe for Monsoon
@@ -81,7 +81,7 @@
     <!--! START-3 -->
     <div class="box">
       <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form">
+      <form id="">
         <div class="form-group">
           <label for="name">Plantation Name</label>
           <input
@@ -115,7 +115,7 @@
     <!--! START-4 -->
     <div class="box">
       <h1>Festival Date Checker <span>Task - 04</span></h1>
-      <form id="attraction-form">
+      <form id="">
         <div class="form-group">
           <label for="festivalDate">Select Date</label>
           <input type="date" id="festivalDate" required />
@@ -140,75 +140,275 @@
     <!--! END -->
 
     <hr />
-    <!--! START-3 -->
+
+    <!--! START-5 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <h1>Traditional Cuisine Order <span>Task - 05</span></h1>
+      <form id="">
+        <div class="form-group">
+          <label>Select Dishes</label>
+          <div class="checkbox-group">
+            <label
+              ><input type="checkbox" name="dish" value="Hoppers" />
+              Hoppers</label
+            >
+            <label
+              ><input type="checkbox" name="dish" value="String Hoppers" />
+              String Hoppers</label
+            >
+            <label
+              ><input type="checkbox" name="dish" value="Kottu Roti" /> Kottu
+              Roti</label
+            >
+            <label
+              ><input type="checkbox" name="dish" value="Pol Sambol" /> Pol
+              Sambol</label
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="specialRequests">Special Requests</label>
+          <textarea
+            id="specialRequests"
+            rows="4"
+            placeholder="Enter any special requests"
+          ></textarea>
+        </div>
+        <button onclick="submitOrder()">Place Order</button>
+      </form>
+      <div id="orderSummary">
+        <h3>Order Summary</h3>
+        <p id="selectedDishes"></p>
+        <p id="requests"></p>
+      </div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-6 -->
+    <div class="box">
+      <h1>Currency Converter <span>Task - 06</span></h1>
       <form id="attraction-form">
         <div class="form-group">
-          <label for="name">Plantation Name</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Enter plantation name"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="region">Region</label>
-          <input type="text" id="region" placeholder="Enter region" required />
-        </div>
-        <div class="form-group">
-          <label for="production">Annual Production (kg)</label>
+          <label for="amount">Amount</label>
           <input
             type="number"
-            id="production"
-            placeholder="Enter production"
+            id="amount"
+            placeholder="Enter amount"
+            min="0"
+            step="any"
             required
           />
         </div>
-        <button onclick="addPlantation()">Add Plantation</button>
+        <div class="form-group">
+          <label>Conversion Direction</label>
+          <div class="radio-group">
+            <label
+              ><input type="radio" name="conversion" value="LKRtoUSD" checked />
+              LKR to USD</label
+            >
+            <label
+              ><input type="radio" name="conversion" value="USDtoLKR" /> USD to
+              LKR</label
+            >
+          </div>
+        </div>
+        <button onclick="convertCurrency()">Convert</button>
       </form>
+      <div id="result"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-7 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
       <div id="plantationList"></div>
     </div>
     <!--! END -->
 
     <hr />
 
-    <!--! START-3 -->
+    <!--! START-8 -->
     <div class="box">
       <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form">
-        <div class="form-group">
-          <label for="name">Plantation Name</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Enter plantation name"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="region">Region</label>
-          <input type="text" id="region" placeholder="Enter region" required />
-        </div>
-        <div class="form-group">
-          <label for="production">Annual Production (kg)</label>
-          <input
-            type="number"
-            id="production"
-            placeholder="Enter production"
-            required
-          />
-        </div>
-        <button onclick="addPlantation()">Add Plantation</button>
-      </form>
+      <form id="attraction-form"></form>
       <div id="plantationList"></div>
     </div>
     <!--! END -->
 
     <hr />
 
-    <!--! START -->
+    <!--! START-9 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-10 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-11 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-12 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-13 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-14 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-15 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-16 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-17 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-18 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-19 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-20 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-21 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-22 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-23 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-24 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
+
+    <hr />
+
+    <!--! START-25 -->
+    <div class="box">
+      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
+      <form id="attraction-form"></form>
+      <div id="plantationList"></div>
+    </div>
+    <!--! END -->
 
     <script src="main.js"></script>
   </body>
