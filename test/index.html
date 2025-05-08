@@ -6,44 +6,68 @@
     <title>Document</title>
   </head>
   <body>
-    <button id="myButton">Click me</button>
-    <input id="myInput" type="text" placeholder="Type something..." />
+    <div class="box">
+      <h1>Currency Converter <span>Task - 06</span></h1>
+      <form id="attraction-form">
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input
+            type="number"
+            id="amount"
+            placeholder="Enter amount"
+            min="0"
+            step="any"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Conversion Direction</label>
+          <div class="radio-group">
+            <label
+              ><input type="radio" name="conversion" value="LKRtoUSD" checked />
+              LKR to USD</label
+            >
+            <label
+              ><input type="radio" name="conversion" value="USDtoLKR" /> USD to
+              LKR</label
+            >
+          </div>
+        </div>
+        <button onclick="convertCurrency(event)">Convert</button>
+      </form>
+      <div id="result"></div>
+    </div>
     <script>
-      // Select elements
-      const button = document.querySelector("#myButton");
-      const input = document.querySelector("#myInput");
+      const exchangeRates = {
+        LKRtoUSD: 0.0033, // 1 LKR = 0.0033 USD (approx, as of May 2025)
+        USDtoLKR: 303.03, // 1 USD = 303.03 LKR (approx, inverse)
+      };
 
-      // Click event (Mouse event)
-      button.addEventListener("click", (event) => {
-        alert(`Button clicked! Target: ${event.target.tagName}`);
-      });
+      function convertCurrency(event) {
+        event.preventDefault(); // Prevent form submission
+        const amount = parseFloat(document.getElementById("amount").value);
+        const conversionType = document.querySelector(
+          'input[name="conversion"]:checked'
+        ).value;
+        const resultDiv = document.getElementById("result");
 
-      // Mouseover event
-      button.addEventListener("mouseover", () => {
-        button.style.backgroundColor = "lightblue";
-      });
-
-      // Mouseout event
-      button.addEventListener("mouseout", () => {
-        button.style.backgroundColor = "";
-      });
-
-      // Input event (Form event)
-      input.addEventListener("input", (event) => {
-        console.log(`Input value: ${event.target.value}`);
-      });
-
-      // Keydown event (Keyboard event)
-      input.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-          alert(`You pressed Enter! Input: ${input.value}`);
+        if (isNaN(amount) || amount < 0) {
+          resultDiv.textContent = "Please enter a valid amount.";
+          resultDiv.style.color = "red";
+          return;
         }
-      });
 
-      // Page load event (Window event)
-      window.addEventListener("load", () => {
-        console.log("Page fully loaded!");
-      });
+        let convertedAmount;
+        if (conversionType === "LKRtoUSD") {
+          convertedAmount = (amount * exchangeRates.LKRtoUSD).toFixed(2);
+          resultDiv.textContent = `${amount} LKR = ${convertedAmount} USD`;
+        } else {
+          convertedAmount = (amount * exchangeRates.USDtoLKR).toFixed(2);
+          resultDiv.textContent = `${amount} USD = ${convertedAmount} LKR`;
+        }
+
+        resultDiv.style.color = "green";
+      }
     </script>
   </body>
 </html>

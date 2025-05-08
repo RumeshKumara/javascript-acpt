@@ -37,16 +37,22 @@
     <!--! START-1 -->
     <div class="box">
       <h1>Colombo Tourist Attractions <span>Task - 01</span></h1>
-      <form id="attraction-form">
-        <label for="attraction-input">Enter Attraction Name:</label>
+      <div class="form-group">
+        <label for="attractionName">Attraction Name</label>
         <input
           type="text"
-          id="attraction-input"
+          id="attractionName"
           placeholder="e.g., Galle Face Green"
+          required
         />
-        <button type="submit">Search</button>
-      </form>
-      <div id="attraction-details" class="io"></div>
+      </div>
+      <button onclick="searchAttraction()">Search</button>
+      <div id="attractionDetails">
+        <h3 id="attractionTitle"></h3>
+        <p id="attractionDescription"></p>
+        <p id="attractionLocation"></p>
+        <p id="attractionHours"></p>
+      </div>
     </div>
     <!--! END -->
 
@@ -55,23 +61,21 @@
     <!--! START-2 -->
     <div class="box">
       <h1>Weather Alert Subscription <span>Task - 02</span></h1>
-      <form id="">
-        <div class="form-group">
-          <label>
-            <input type="checkbox" id="monsoonAlerts" /> Subscribe for Monsoon
-            Alerts
-          </label>
-        </div>
-        <div class="form-group">
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            required
-          />
-        </div>
-        <button onclick="submitForm()">Submit</button>
-      </form>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="monsoonAlerts" /> Subscribe for Monsoon
+          Alerts
+        </label>
+      </div>
+      <div class="form-group">
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+      <button onclick="submitForm()">Submit</button>
       <div id="confirmation"></div>
     </div>
     <!--! END -->
@@ -81,31 +85,29 @@
     <!--! START-3 -->
     <div class="box">
       <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="">
-        <div class="form-group">
-          <label for="name">Plantation Name</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Enter plantation name"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="region">Region</label>
-          <input type="text" id="region" placeholder="Enter region" required />
-        </div>
-        <div class="form-group">
-          <label for="production">Annual Production (kg)</label>
-          <input
-            type="number"
-            id="production"
-            placeholder="Enter production"
-            required
-          />
-        </div>
-        <button onclick="addPlantation()">Add Plantation</button>
-      </form>
+      <div class="form-group">
+        <label for="name">Plantation Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter plantation name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="region">Region</label>
+        <input type="text" id="region" placeholder="Enter region" required />
+      </div>
+      <div class="form-group">
+        <label for="production">Annual Production (kg)</label>
+        <input
+          type="number"
+          id="production"
+          placeholder="Enter production"
+          required
+        />
+      </div>
+      <button onclick="addPlantation()">Add Plantation</button>
       <div id="plantationList"></div>
     </div>
     <!--! END -->
@@ -115,26 +117,24 @@
     <!--! START-4 -->
     <div class="box">
       <h1>Festival Date Checker <span>Task - 04</span></h1>
-      <form id="">
-        <div class="form-group">
-          <label for="festivalDate">Select Date</label>
-          <input type="date" id="festivalDate" required />
+      <div class="form-group">
+        <label for="festivalDate">Select Date</label>
+        <input type="date" id="festivalDate" required />
+      </div>
+      <div class="form-group">
+        <label>Select Festival</label>
+        <div class="radio-group">
+          <label
+            ><input type="radio" name="festival" value="Vesak" required />
+            Vesak</label
+          >
+          <label
+            ><input type="radio" name="festival" value="Sinhala New Year" />
+            Sinhala New Year</label
+          >
         </div>
-        <div class="form-group">
-          <label>Select Festival</label>
-          <div class="radio-group">
-            <label
-              ><input type="radio" name="festival" value="Vesak" required />
-              Vesak</label
-            >
-            <label
-              ><input type="radio" name="festival" value="Sinhala New Year" />
-              Sinhala New Year</label
-            >
-          </div>
-        </div>
-        <button onclick="checkFestivalDate()">Check Date</button>
-      </form>
+      </div>
+      <button onclick="checkFestivalDate()">Check Date</button>
       <div id="result"></div>
     </div>
     <!--! END -->
@@ -144,38 +144,36 @@
     <!--! START-5 -->
     <div class="box">
       <h1>Traditional Cuisine Order <span>Task - 05</span></h1>
-      <form id="">
-        <div class="form-group">
-          <label>Select Dishes</label>
-          <div class="checkbox-group">
-            <label
-              ><input type="checkbox" name="dish" value="Hoppers" />
-              Hoppers</label
-            >
-            <label
-              ><input type="checkbox" name="dish" value="String Hoppers" />
-              String Hoppers</label
-            >
-            <label
-              ><input type="checkbox" name="dish" value="Kottu Roti" /> Kottu
-              Roti</label
-            >
-            <label
-              ><input type="checkbox" name="dish" value="Pol Sambol" /> Pol
-              Sambol</label
-            >
-          </div>
+      <div class="form-group">
+        <label>Select Dishes</label>
+        <div class="checkbox-group">
+          <label
+            ><input type="checkbox" name="dish" value="Hoppers" />
+            Hoppers</label
+          >
+          <label
+            ><input type="checkbox" name="dish" value="String Hoppers" /> String
+            Hoppers</label
+          >
+          <label
+            ><input type="checkbox" name="dish" value="Kottu Roti" /> Kottu
+            Roti</label
+          >
+          <label
+            ><input type="checkbox" name="dish" value="Pol Sambol" /> Pol
+            Sambol</label
+          >
         </div>
-        <div class="form-group">
-          <label for="specialRequests">Special Requests</label>
-          <textarea
-            id="specialRequests"
-            rows="4"
-            placeholder="Enter any special requests"
-          ></textarea>
-        </div>
-        <button onclick="submitOrder()">Place Order</button>
-      </form>
+      </div>
+      <div class="form-group">
+        <label for="specialRequests">Special Requests</label>
+        <textarea
+          id="specialRequests"
+          rows="4"
+          placeholder="Enter any special requests"
+        ></textarea>
+      </div>
+      <button onclick="submitOrder()">Place Order</button>
       <div id="orderSummary">
         <h3>Order Summary</h3>
         <p id="selectedDishes"></p>
@@ -189,34 +187,32 @@
     <!--! START-6 -->
     <div class="box">
       <h1>Currency Converter <span>Task - 06</span></h1>
-      <form id="attraction-form">
-        <div class="form-group">
-          <label for="amount">Amount</label>
-          <input
-            type="number"
-            id="amount"
-            placeholder="Enter amount"
-            min="0"
-            step="any"
-            required
-          />
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input
+          type="number"
+          id="amount"
+          placeholder="Enter amount"
+          min="0"
+          step="any"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>Conversion Direction</label>
+        <div class="radio-group">
+          <label
+            ><input type="radio" name="conversion" value="LKRtoUSD" checked />
+            LKR to USD</label
+          >
+          <label
+            ><input type="radio" name="conversion" value="USDtoLKR" /> USD to
+            LKR</label
+          >
         </div>
-        <div class="form-group">
-          <label>Conversion Direction</label>
-          <div class="radio-group">
-            <label
-              ><input type="radio" name="conversion" value="LKRtoUSD" checked />
-              LKR to USD</label
-            >
-            <label
-              ><input type="radio" name="conversion" value="USDtoLKR" /> USD to
-              LKR</label
-            >
-          </div>
-        </div>
-        <button onclick="convertCurrency()">Convert</button>
-      </form>
-      <div id="result"></div>
+      </div>
+      <button onclick="convertCurrency()">Convert</button>
+      <div id="currencyResult"></div>
     </div>
     <!--! END -->
 

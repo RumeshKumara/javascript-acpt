@@ -25,36 +25,73 @@ goToTopButton.addEventListener('click', () => {
     });
 });
 
+
 // ! Task 1: Create a form to search for attractions in Colombo
 
-document.getElementById("attraction-form").onsubmit = function (event) {
-    event.preventDefault(); // Prevent form from refreshing the page
+const attractions = {
+    "galle face green": {
+        name: "Galle Face Green",
+        description: "A popular urban park and promenade along the coast, perfect for evening walks and street food.",
+        location: "Colombo 3, Sri Lanka",
+        hours: "Open 24 hours"
+    },
+    "venerable gangaramaya temple": {
+        name: "Venerable Gangaramaya Temple",
+        description: "A historic Buddhist temple with a mix of modern and traditional architecture, featuring a museum and library.",
+        location: "61 Sri Jinarathana Rd, Colombo 2, Sri Lanka",
+        hours: "6:00 AM - 10:00 PM"
+    },
+    "national museum of colombo": {
+        name: "National Museum of Colombo",
+        description: "The largest museum in Sri Lanka, showcasing the country's cultural and historical artifacts.",
+        location: "Sir Marcus Fernando Mawatha, Colombo 7, Sri Lanka",
+        hours: "9:00 AM - 5:00 PM, closed on Fridays"
+    },
+    "independence square": {
+        name: "Independence Square",
+        description: "A landmark commemorating Sri Lanka's independence, surrounded by lush gardens and colonial-era architecture.",
+        location: "Independence Ave, Colombo 7, Sri Lanka",
+        hours: "Open 24 hours"
+    }
+};
 
-    const attractionInput = document.getElementById("attraction-input").value.trim();
-    const attractionDetails = document.getElementById("attraction-details");
+function searchAttraction() {
+    const input = document.getElementById('attractionName').value.trim().toLowerCase();
+    const detailsDiv = document.getElementById('attractionDetails');
+    const title = document.getElementById('attractionTitle');
+    const description = document.getElementById('attractionDescription');
+    const location = document.getElementById('attractionLocation');
+    const hours = document.getElementById('attractionHours');
 
-    // Clear previous details
-    attractionDetails.innerHTML = "";
-
-    if (attractionInput === "") {
-        attractionDetails.textContent = "Please enter an attraction name.";
+    if (!input) {
+        alert('Please enter an attraction name.');
         return;
     }
 
-    // Example data for attractions
-    const attractions = {
-        "Galle Face Green": "A popular ocean-side urban park in Colombo.",
-        "Independence Square": "A historic landmark commemorating Sri Lanka's independence.",
-        "Gangaramaya Temple": "A beautiful Buddhist temple known for its architecture and museum.",
-    };
+    const attraction = attractions[input];
 
-    // Display details or show a not-found message
-    if (attractions[attractionInput]) {
-        attractionDetails.textContent = attractions[attractionInput];
+    if (attraction) {
+        title.textContent = attraction.name;
+        description.textContent = `Description: ${attraction.description}`;
+        location.textContent = `Location: ${attraction.location}`;
+        hours.textContent = `Hours: ${attraction.hours}`;
+        detailsDiv.style.display = 'block';
+        detailsDiv.style.color = 'white'; // Set background color to light blue
     } else {
-        attractionDetails.textContent = "Attraction not found. Please try another name.";
+        detailsDiv.style.display = 'block';
+        title.textContent = 'Not Found';
+        description.textContent = `Sorry, no details available for "${input}". Try "Galle Face Green", "Venerable Gangaramaya Temple", "National Museum of Colombo", or "Independence Square".`;
+        location.textContent = '';
+        hours.textContent = '';
+        detailsDiv.style.color = 'white';
+        detailsDiv.style.border = '1px solid #882dff';
+        detailsDiv.style.padding = '10px';
+        detailsDiv.style.borderRadius = '5px';
+
     }
-};
+
+    document.getElementById('attractionName').value = '';
+}
 
 // ! Task 2: 
 function submitForm() {
@@ -71,6 +108,8 @@ function submitForm() {
     confirmationDiv.textContent = monsoonAlerts
         ? `Thank you! You have subscribed to Monsoon Alerts with email: ${email}.`
         : `Thank you! Your email ${email} has been recorded.`;
+
+    confirmationDiv.style.color = 'white'; // Set text color to white
 }
 
 // ! Task 3:
@@ -171,7 +210,7 @@ const exchangeRates = {
 function convertCurrency() {
     const amount = parseFloat(document.getElementById('amount').value);
     const conversionType = document.querySelector('input[name="conversion"]:checked').value;
-    const resultDiv = document.getElementById('result');
+    const resultDiv = document.getElementById('currencyResult');
 
     if (isNaN(amount) || amount < 0) {
         resultDiv.textContent = 'Please enter a valid amount.';
