@@ -669,3 +669,430 @@ function submitReservation() {
     document.getElementById('people').value = '';
     document.querySelectorAll('input[name="mealPreference"]').forEach(cb => cb.checked = false);
 }
+
+// ! Task 16:
+const roomAvailability = {
+    Standard: { totalRooms: 20, bookedDates: ["2025-05-15", "2025-05-16", "2025-06-01"] },
+    Deluxe: { totalRooms: 10, bookedDates: ["2025-05-20", "2025-05-21"] },
+    Suite: { totalRooms: 5, bookedDates: ["2025-05-25"] }
+};
+
+function checkAvailability() {
+    const checkIn = document.getElementById('checkIn').value;
+    const checkOut = document.getElementById('checkOut').value;
+    const roomType = document.getElementById('roomType').value;
+    const resultDiv = document.getElementById('availabilityResult');
+
+    if (!checkIn || !checkOut || !roomType) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
+
+    if (checkOutDate <= checkInDate) {
+        resultDiv.textContent = 'Check-out date must be after check-in date.';
+        resultDiv.style.color = 'red';
+        resultDiv.style.display = 'block';
+        return;
+    }
+
+    const bookedDates = roomAvailability[roomType].bookedDates;
+    let isAvailable = true;
+
+    for (let d = new Date(checkIn); d <= checkOutDate; d.setDate(d.getDate() + 1)) {
+        const dateStr = d.toISOString().split('T')[0];
+        if (bookedDates.includes(dateStr)) {
+            isAvailable = false;
+            break;
+        }
+    }
+
+    resultDiv.style.display = 'block';
+    if (isAvailable) {
+        resultDiv.textContent = `${roomType} room is available from ${checkIn} to ${checkOut}.`;
+        resultDiv.style.color = 'green';
+    } else {
+        resultDiv.textContent = `${roomType} room is not available for the selected dates.`;
+        resultDiv.style.color = 'red';
+    }
+
+    document.getElementById('checkIn').value = '';
+    document.getElementById('checkOut').value = '';
+    document.getElementById('roomType').value = '';
+}
+
+// ! Task 17:
+let totalRuns = 0;
+let wickets = 0;
+let balls = 0;
+
+function updateScoreboard() {
+    const runs = parseInt(document.getElementById('runs').value);
+    const wicket = document.getElementById('wicket').checked;
+    const scoreboard = document.getElementById('scoreboard');
+    const errorMessage = document.getElementById('errorMessage');
+
+    errorMessage.style.display = 'none';
+
+    if (isNaN(runs) || runs < 0) {
+        errorMessage.textContent = 'Please enter a valid number of runs.';
+        errorMessage.style.display = 'block';
+        return;
+    }
+
+    totalRuns += runs;
+    balls += 1;
+    if (wicket && wickets < 10) {
+        wickets += 1;
+    }
+
+    const overs = Math.floor(balls / 6) + (balls % 6) / 10;
+    scoreboard.textContent = `Score: ${totalRuns}/${wickets} (${overs.toFixed(1)} overs)`;
+    scoreboard.style.color = 'green';
+
+    document.getElementById('runs').value = '';
+    document.getElementById('wicket').checked = false;
+}
+
+// ! Task 18:
+const fareRates = {
+    Normal: 2.5, // LKR per km
+    AC: 4.0,     // LKR per km
+    Luxury: 6.0  // LKR per km
+};
+
+function calculateFare() {
+    const distance = parseFloat(document.getElementById('distance').value);
+    const busType = document.querySelector('input[name="busType"]:checked').value;
+    const resultDiv = document.getElementById('fareResult');
+
+    if (isNaN(distance) || distance <= 0) {
+        resultDiv.textContent = 'Please enter a valid distance.';
+        resultDiv.style.color = 'red';
+        resultDiv.style.display = 'block';
+        return;
+    }
+
+    const fare = (distance * fareRates[busType]).toFixed(2);
+
+    resultDiv.textContent = `Bus Fare for ${distance} km (${busType}): LKR ${fare}`;
+    resultDiv.style.color = 'green';
+    resultDiv.style.display = 'block';
+
+    document.getElementById('distance').value = '';
+    document.querySelector('input[name="busType"][value="Normal"]').checked = true;
+}
+
+// ! Task 19:
+function submitBooking() {
+    const shows = Array.from(document.querySelectorAll('input[name="show"]:checked')).map(checkbox => checkbox.value);
+    const tickets = document.getElementById('tickets').value;
+    const summaryDiv = document.getElementById('bookingSummary');
+    const selectedShows = document.getElementById('selectedShows');
+    const ticketCount = document.getElementById('ticketCount');
+
+    if (shows.length === 0) {
+        alert('Please select at least one cultural show.');
+        return;
+    }
+
+    if (!tickets || tickets < 1) {
+        alert('Please enter a valid number of tickets.');
+        return;
+    }
+
+    selectedShows.textContent = `Selected Shows: ${shows.join(', ')}`;
+    ticketCount.textContent = `Number of Tickets: ${tickets}`;
+
+    summaryDiv.style.display = 'block';
+    summaryDiv.style.color = 'green';
+
+    document.getElementById('tickets').value = '';
+    document.querySelectorAll('input[name="show"]').forEach(checkbox => checkbox.checked = false);
+}
+
+// ! Task 20:
+function calculateBudget() {
+    const venue = parseFloat(document.getElementById('venue').value) || 0;
+    const catering = parseFloat(document.getElementById('catering').value) || 0;
+    const decoration = parseFloat(document.getElementById('decoration').value) || 0;
+    const summaryDiv = document.getElementById('budgetSummary');
+    const errorMessage = document.getElementById('errorMessage');
+
+    errorMessage.style.display = 'none';
+
+    if (venue < 0 || catering < 0 || decoration < 0) {
+        errorMessage.textContent = 'Please enter valid non-negative amounts.';
+        errorMessage.style.display = 'block';
+        return;
+    }
+
+    if (venue === 0 && catering === 0 && decoration === 0) {
+        errorMessage.textContent = 'Please enter at least one expense amount.';
+        errorMessage.style.display = 'block';
+        return;
+    }
+
+    const totalBudget = (venue + catering + decoration).toFixed(2);
+
+    summaryDiv.textContent = `Total Festival Budget: LKR ${totalBudget}`;
+    summaryDiv.style.display = 'block';
+
+    document.getElementById('venue').value = '';
+    document.getElementById('catering').value = '';
+    document.getElementById('decoration').value = '';
+}
+
+// ! Task 21:
+let incidents = [];
+
+function reportIncident() {
+    const description = document.getElementById('description').value.trim();
+    const incidentTypes = Array.from(document.querySelectorAll('input[name="incidentType"]:checked')).map(cb => cb.value);
+    const incidentList = document.getElementById('incidentList');
+    const errorMessage = document.getElementById('errorMessage');
+
+    errorMessage.style.display = 'none';
+
+    if (!description && incidentTypes.length === 0) {
+        errorMessage.textContent = 'Please provide a description or select at least one incident type.';
+        errorMessage.style.display = 'block';
+        return;
+    }
+
+    const incident = {
+        description: description || 'No description provided',
+        types: incidentTypes.length > 0 ? incidentTypes : ['None'],
+        timestamp: new Date().toLocaleString()
+    };
+
+    incidents.push(incident);
+    updateIncidentList();
+
+    document.getElementById('description').value = '';
+    document.querySelectorAll('input[name="incidentType"]').forEach(cb => cb.checked = false);
+}
+
+function updateIncidentList() {
+    const incidentList = document.getElementById('incidentList');
+    incidentList.innerHTML = '';
+
+    if (incidents.length === 0) {
+        incidentList.innerHTML = '<p>No incidents reported yet.</p>';
+        return;
+    }
+
+    incidents.forEach(incident => {
+        const incidentItem = document.createElement('div');
+        incidentItem.className = 'incident-item';
+        incidentItem.innerHTML = `
+                    <strong>Time:</strong> ${incident.timestamp}<br>
+                    <strong>Description:</strong> ${incident.description}<br>
+                    <strong>Types:</strong> ${incident.types.join(', ')}
+                `;
+        incidentList.appendChild(incidentItem);
+    });
+}
+
+// ! Task 22:
+const destinationPlans = {
+    "ella": {
+        hiking: "Explore the scenic trails of Ella Rock and Little Adam's Peak for breathtaking views.",
+        sightseeing: "Visit the Nine Arch Bridge and Ravana Falls for iconic landmarks.",
+        beachRelaxation: "Note: Ella is inland, but you can visit nearby beaches in Mirissa or Tangalle with a day trip."
+    },
+    "galle": {
+        hiking: "Take a coastal walk along the Galle Fort ramparts or explore nearby jungle trails.",
+        sightseeing: "Tour the historic Galle Fort, a UNESCO World Heritage Site, and visit the Dutch Reformed Church.",
+        beachRelaxation: "Relax at Unawatuna Beach or Jungle Beach, just a short distance from Galle."
+    }
+};
+
+function generateTravelPlan() {
+    const destination = document.getElementById('destination').value.trim().toLowerCase();
+    const activities = Array.from(document.querySelectorAll('input[name="activity"]:checked')).map(cb => cb.value);
+    const travelPlan = document.getElementById('travelPlan');
+    const planDestination = document.getElementById('planDestination');
+    const planActivities = document.getElementById('planActivities');
+    const planDetails = document.getElementById('planDetails');
+
+    if (!destination) {
+        alert('Please enter a destination.');
+        return;
+    }
+
+    if (activities.length === 0) {
+        alert('Please select at least one activity.');
+        return;
+    }
+
+    planDestination.textContent = `Destination: ${destination.charAt(0).toUpperCase() + destination.slice(1)}`;
+    planActivities.textContent = `Activities: ${activities.join(', ')}`;
+
+    const plans = destinationPlans[destination];
+    if (plans) {
+        const details = activities.map(activity => {
+            const key = activity.toLowerCase().replace(' ', '');
+            return plans[key] || `No specific ${activity} details available for ${destination}.`;
+        }).join(' ');
+        planDetails.textContent = `Details: ${details}`;
+    } else {
+        planDetails.textContent = `Details: No specific plans available for ${destination}. Enjoy ${activities.join(', ').toLowerCase()} at your own pace!`;
+    }
+
+    travelPlan.style.display = 'block';
+
+    document.getElementById('destination').value = '';
+    document.querySelectorAll('input[name="activity"]').forEach(cb => cb.checked = false);
+}
+
+// ! Task 23:
+let inventory = [];
+
+function addBook() {
+    const title = document.getElementById('title').value.trim();
+    const author = document.getElementById('author').value.trim();
+    const quantity = parseInt(document.getElementById('quantity').value);
+    const errorMessage = document.getElementById('errorMessage');
+
+    errorMessage.style.display = 'none';
+
+    if (!title || !author) {
+        errorMessage.textContent = 'Please enter both title and author.';
+        errorMessage.style.display = 'block';
+        return;
+    }
+
+    if (isNaN(quantity) || quantity < 1) {
+        errorMessage.textContent = 'Please enter a valid quantity.';
+        errorMessage.style.display = 'block';
+        return;
+    }
+
+    const book = { title, author, quantity };
+    inventory.push(book);
+    updateInventoryList();
+
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
+    document.getElementById('quantity').value = '';
+}
+
+function updateInventoryList() {
+    const inventoryList = document.getElementById('inventoryList');
+    inventoryList.innerHTML = '';
+
+    if (inventory.length === 0) {
+        inventoryList.innerHTML = '<p>No books in inventory.</p>';
+        return;
+    }
+
+    inventory.forEach(book => {
+        const bookItem = document.createElement('div');
+        bookItem.className = 'book-item';
+        bookItem.textContent = `${book.title} by ${book.author} - Quantity: ${book.quantity}`;
+        inventoryList.appendChild(bookItem);
+        inventoryList.style.color = 'green';
+    });
+}
+
+// ! Task 24:
+const prices = {
+    "Wooden Mask": 1500,
+    "Batik Fabric": 2000,
+    "Clay Pot": 800
+};
+
+document.querySelectorAll('input[name="item"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function () {
+        const quantityInput = document.querySelector(`input[name="quantity_${this.value}"]`);
+        quantityInput.disabled = !this.checked;
+        if (!this.checked) quantityInput.value = 0;
+    });
+});
+
+function submitOrder() {
+    const items = Array.from(document.querySelectorAll('input[name="item"]:checked')).map(cb => cb.value);
+    const quantities = {};
+    items.forEach(item => {
+        const quantity = parseInt(document.querySelector(`input[name="quantity_${item}"]`).value) || 0;
+        quantities[item] = quantity;
+    });
+
+    const errorMessage = document.getElementById('errorMessage');
+    const summaryDiv = document.getElementById('orderSummary');
+    const orderedItems = document.getElementById('orderedItems');
+    const totalPrice = document.getElementById('totalPrice');
+
+    errorMessage.style.display = 'none';
+
+    if (items.length === 0) {
+        errorMessage.textContent = 'Please select at least one item.';
+        errorMessage.style.display = 'block';
+        return;
+    }
+
+    if (items.some(item => quantities[item] <= 0)) {
+        errorMessage.textContent = 'Please specify a valid quantity for all selected items.';
+        errorMessage.style.display = 'block';
+        return;
+    }
+
+    let total = 0;
+    const itemSummary = items.map(item => {
+        const cost = quantities[item] * prices[item];
+        total += cost;
+        return `${item}: ${quantities[item]} x LKR ${prices[item]} = LKR ${cost}`;
+    }).join('<br>');
+
+    orderedItems.innerHTML = `Items:<br>${itemSummary}`;
+    totalPrice.textContent = `Total Price: LKR ${total.toFixed(2)}`;
+
+    summaryDiv.style.display = 'block';
+
+    document.querySelectorAll('input[name="item"]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.value = 0;
+        input.disabled = true;
+    });
+}
+
+// ! Task 25:
+function generateTicketNumber() {
+    return 'TICKET-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+}
+
+function generateTicket() {
+    const passengerName = document.getElementById('passengerName').value.trim();
+    const journey = document.getElementById('journey').value;
+    const ticketResult = document.getElementById('ticketResult');
+    const errorMessage = document.getElementById('errorMessage');
+
+    errorMessage.style.display = 'none';
+
+    if (!passengerName || !journey) {
+        errorMessage.textContent = 'Please enter a name and select a journey.';
+        errorMessage.style.display = 'block';
+        return;
+    }
+
+    const ticketNumber = generateTicketNumber();
+
+    ticketResult.innerHTML = `
+        <strong>Ticket Generated!</strong><br><br>
+        Passenger: ${passengerName}<br><br>
+        Journey: ${journey}<br><br>
+        Ticket Number: ${ticketNumber}
+    `;
+    ticketResult.style.display = 'block';
+    ticketResult.style.color = 'blue'; // Set text color to white
+    ticketResult.style.border = '1px solid #882dff';
+    ticketResult.style.padding = '10px';
+    ticketResult.style.borderRadius = '5px';
+
+
+    document.getElementById('passengerName').value = '';
+    document.getElementById('journey').value = '';
+}

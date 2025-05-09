@@ -553,9 +553,26 @@
 
     <!--! START-16 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Beach Resort Room Availability <span>Task - 16</span></h1>
+      <div class="form-group">
+        <label for="checkIn">Check-In Date</label>
+        <input type="date" id="checkIn" required />
+      </div>
+      <div class="form-group">
+        <label for="checkOut">Check-Out Date</label>
+        <input type="date" id="checkOut" required />
+      </div>
+      <div class="form-group">
+        <label for="roomType">Room Type</label>
+        <select id="roomType" required>
+          <option value="" disabled selected>Select room type</option>
+          <option value="Standard">Standard</option>
+          <option value="Deluxe">Deluxe</option>
+          <option value="Suite">Suite</option>
+        </select>
+      </div>
+      <button onclick="checkAvailability()">Check Availability</button>
+      <div id="availabilityResult"></div>
     </div>
     <!--! END -->
 
@@ -563,9 +580,23 @@
 
     <!--! START-17 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Cricket Score Entry <span>Task - 17</span></h1>
+      <div class="form-group">
+        <label for="runs">Runs Scored</label>
+        <input
+          type="number"
+          id="runs"
+          placeholder="Enter runs scored"
+          min="0"
+          required
+        />
+      </div>
+      <div class="checkbox-group">
+        <label> <input type="checkbox" id="wicket" /> Wicket Fallen </label>
+      </div>
+      <button onclick="updateScoreboard()">Update Score</button>
+      <div id="scoreboard">Score: 0/0 (0 overs)</div>
+      <div id="errorMessage"></div>
     </div>
     <!--! END -->
 
@@ -573,9 +604,33 @@
 
     <!--! START-18 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Bus Fare Calculator <span>Task - 18</span></h1>
+      <div class="form-group">
+        <label for="distance">Travel Distance (km)</label>
+        <input
+          type="number"
+          id="distance"
+          placeholder="Enter distance"
+          min="1"
+          step="any"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>Bus Type</label>
+        <div class="radio-group">
+          <label
+            ><input type="radio" name="busType" value="Normal" checked />
+            Normal</label
+          >
+          <label><input type="radio" name="busType" value="AC" /> AC</label>
+          <label
+            ><input type="radio" name="busType" value="Luxury" /> Luxury</label
+          >
+        </div>
+      </div>
+      <button onclick="calculateFare()">Calculate Fare</button>
+      <div id="fareResult"></div>
     </div>
     <!--! END -->
 
@@ -583,9 +638,44 @@
 
     <!--! START-19 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Tea Plantation Inventory <span>Task - 19</span></h1>
+      <div class="form-group">
+        <label>Select Shows</label>
+        <div class="checkbox-group">
+          <label
+            ><input type="checkbox" name="show" value="Kandyan Dance" /> Kandyan
+            Dance</label
+          >
+          <label
+            ><input type="checkbox" name="show" value="Low Country Dance" /> Low
+            Country Dance</label
+          >
+          <label
+            ><input type="checkbox" name="show" value="Drumming Performance" />
+            Drumming Performance</label
+          >
+          <label
+            ><input type="checkbox" name="show" value="Fire Dance" /> Fire
+            Dance</label
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="tickets">Number of Tickets</label>
+        <input
+          type="number"
+          id="tickets"
+          placeholder="Enter number of tickets"
+          min="1"
+          required
+        />
+      </div>
+      <button onclick="submitBooking()">Submit Booking</button>
+      <div id="bookingSummary">
+        <h3>Booking Summary</h3>
+        <p id="selectedShows"></p>
+        <p id="ticketCount"></p>
+      </div>
     </div>
     <!--! END -->
 
@@ -593,9 +683,40 @@
 
     <!--! START-20 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Tea Plantation Inventory <span>Task - 20</span></h1>
+      <div class="form-group">
+        <label for="venue">Venue Cost (LKR)</label>
+        <input
+          type="number"
+          id="venue"
+          placeholder="Enter venue cost"
+          min="0"
+          step="any"
+        />
+      </div>
+      <div class="form-group">
+        <label for="catering">Catering Cost (LKR)</label>
+        <input
+          type="number"
+          id="catering"
+          placeholder="Enter catering cost"
+          min="0"
+          step="any"
+        />
+      </div>
+      <div class="form-group">
+        <label for="decoration">Decoration Cost (LKR)</label>
+        <input
+          type="number"
+          id="decoration"
+          placeholder="Enter decoration cost"
+          min="0"
+          step="any"
+        />
+      </div>
+      <button onclick="calculateBudget()">Calculate Budget</button>
+      <div id="budgetSummary"></div>
+      <div id="errorMessage"></div>
     </div>
     <!--! END -->
 
@@ -603,9 +724,35 @@
 
     <!--! START-21 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Traffic Incident Reporter <span>Task - 21</span></h1>
+      <div class="form-group">
+        <label for="description">Incident Description</label>
+        <textarea
+          id="description"
+          rows="4"
+          placeholder="Describe the incident"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label>Incident Type</label>
+        <div class="checkbox-group">
+          <label
+            ><input type="checkbox" name="incidentType" value="Accident" />
+            Accident</label
+          >
+          <label
+            ><input type="checkbox" name="incidentType" value="Congestion" />
+            Congestion</label
+          >
+          <label
+            ><input type="checkbox" name="incidentType" value="Roadblock" />
+            Roadblock</label
+          >
+        </div>
+      </div>
+      <button onclick="reportIncident()">Report Incident</button>
+      <div id="errorMessage"></div>
+      <div id="incidentList"></div>
     </div>
     <!--! END -->
 
@@ -613,9 +760,40 @@
 
     <!--! START-22 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Holiday Planner <span>Task - 22</span></h1>
+      <div class="form-group">
+        <label for="destination">Destination</label>
+        <input
+          type="text"
+          id="destination"
+          placeholder="e.g., Ella, Galle"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>Desired Activities</label>
+        <div class="checkbox-group">
+          <label
+            ><input type="checkbox" name="activity" value="Hiking" />
+            Hiking</label
+          >
+          <label
+            ><input type="checkbox" name="activity" value="Sightseeing" />
+            Sightseeing</label
+          >
+          <label
+            ><input type="checkbox" name="activity" value="Beach Relaxation" />
+            Beach Relaxation</label
+          >
+        </div>
+      </div>
+      <button onclick="generateTravelPlan()">Generate Plan</button>
+      <div id="travelPlan">
+        <h3>Travel Plan</h3>
+        <p id="planDestination"></p>
+        <p id="planActivities"></p>
+        <p id="planDetails"></p>
+      </div>
     </div>
     <!--! END -->
 
@@ -623,9 +801,33 @@
 
     <!--! START-23 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Bookstore Inventory Manager <span>Task - 23</span></h1>
+      <div class="form-group">
+        <label for="title">Book Title</label>
+        <input type="text" id="title" placeholder="Enter book title" required />
+      </div>
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input
+          type="text"
+          id="author"
+          placeholder="Enter author name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input
+          type="number"
+          id="quantity"
+          placeholder="Enter quantity"
+          min="1"
+          required
+        />
+      </div>
+      <button onclick="addBook()">Add Book</button>
+      <div id="errorMessage"></div>
+      <div id="inventoryList"></div>
     </div>
     <!--! END -->
 
@@ -633,9 +835,58 @@
 
     <!--! START-24 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Local Handicrafts Order <span>Task - 24</span></h1>
+      <div class="form-group">
+        <label>Select Handicrafts</label>
+        <div class="checkbox-group">
+          <div class="item-group">
+            <label
+              ><input type="checkbox" name="item" value="Wooden Mask" /> Wooden
+              Mask (LKR 1500)</label
+            >
+            <input
+              type="number"
+              name="quantity_Wooden Mask"
+              min="0"
+              value="0"
+              disabled
+            />
+          </div>
+          <div class="item-group">
+            <label
+              ><input type="checkbox" name="item" value="Batik Fabric" /> Batik
+              Fabric (LKR 2000)</label
+            >
+            <input
+              type="number"
+              name="quantity_Batik Fabric"
+              min="0"
+              value="0"
+              disabled
+            />
+          </div>
+          <div class="item-group">
+            <label
+              ><input type="checkbox" name="item" value="Clay Pot" /> Clay Pot
+              (LKR 800)</label
+            >
+            <input
+              type="number"
+              name="quantity_Clay Pot"
+              min="0"
+              value="0"
+              disabled
+            />
+          </div>
+        </div>
+      </div>
+      <button onclick="submitOrder()">Submit Order</button>
+      <div id="errorMessage"></div>
+      <div id="orderSummary">
+        <h3>Order Summary</h3>
+        <p id="orderedItems"></p>
+        <p id="totalPrice"></p>
+      </div>
     </div>
     <!--! END -->
 
@@ -643,9 +894,28 @@
 
     <!--! START-25 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Train Ticket Number Generator <span>Task - 25</span></h1>
+      <div class="form-group">
+        <label for="passengerName">Passenger Name</label>
+        <input
+          type="text"
+          id="passengerName"
+          placeholder="Enter your name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="journey">Journey Details</label>
+        <select id="journey" required>
+          <option value="" disabled selected>Select journey</option>
+          <option value="Colombo to Kandy">Colombo to Kandy</option>
+          <option value="Colombo to Galle">Colombo to Galle</option>
+          <option value="Kandy to Ella">Kandy to Ella</option>
+        </select>
+      </div>
+      <button onclick="generateTicket()">Generate Ticket</button>
+      <div id="errorMessage"></div>
+      <div id="ticketResult"></div>
     </div>
     <!--! END -->
 

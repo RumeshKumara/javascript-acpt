@@ -93,6 +93,16 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
     border: none;
     accent-color: #882dff;
 }
+select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: #230a38;
+    color: #d6d6d6;
+    max-width: 500px;
+    border: none;
+}
 textarea{
     width: 100%;
     padding: 10px;
