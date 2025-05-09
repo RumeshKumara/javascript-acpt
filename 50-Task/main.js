@@ -229,3 +229,202 @@ function convertCurrency() {
 
     resultDiv.style.color = 'green';
 }
+
+// ! Task 7:
+const trainSchedules = {
+    "colombo-kandy": [
+        {
+            train: "Intercity Express",
+            departureTime: "07:00 AM",
+            arrivalTime: "09:30 AM",
+            classes: ["First Class", "Second Class"],
+            duration: "2h 30m"
+        },
+        {
+            train: "Podi Menike",
+            departureTime: "08:30 AM",
+            arrivalTime: "11:15 AM",
+            classes: ["First Class", "Second Class", "Third Class"],
+            duration: "2h 45m"
+        },
+        {
+            train: "Local Train",
+            departureTime: "12:00 PM",
+            arrivalTime: "03:00 PM",
+            classes: ["Second Class", "Third Class"],
+            duration: "3h 00m"
+        }
+    ],
+    "kandy-colombo": [
+        {
+            train: "Intercity Express",
+            departureTime: "06:00 AM",
+            arrivalTime: "08:30 AM",
+            classes: ["First Class", "Second Class"],
+            duration: "2h 30m"
+        },
+        {
+            train: "Podi Menike",
+            departureTime: "09:45 AM",
+            arrivalTime: "12:30 PM",
+            classes: ["First Class", "Second Class", "Third Class"],
+            duration: "2h 45m"
+        }
+    ]
+};
+
+function lookupSchedule() {
+    const departure = document.getElementById('departure').value.trim().toLowerCase();
+    const destination = document.getElementById('destination').value.trim().toLowerCase();
+    const selectedClasses = Array.from(document.querySelectorAll('input[name="travelClass"]:checked')).map(cb => cb.value);
+    const resultsDiv = document.getElementById('scheduleResults');
+
+    if (!departure || !destination) {
+        alert('Please enter both departure and destination stations.');
+        return;
+    }
+
+    const routeKey = `${departure}-${destination}`;
+    const schedules = trainSchedules[routeKey];
+
+    resultsDiv.innerHTML = '';
+    resultsDiv.style.display = 'none';
+
+    if (!schedules) {
+        resultsDiv.innerHTML = `<p>No schedules found for ${departure} to ${destination}. Try "Colombo" to "Kandy" or vice versa.</p>`;
+        resultsDiv.style.display = 'block';
+        return;
+    }
+
+    let matchingSchedules = schedules;
+
+    if (selectedClasses.length > 0) {
+        matchingSchedules = schedules.filter(schedule =>
+            selectedClasses.some(cls => schedule.classes.includes(cls))
+        );
+    }
+
+    if (matchingSchedules.length === 0) {
+        resultsDiv.innerHTML = `<p>No schedules match the selected travel classes.</p>`;
+        resultsDiv.style.display = 'block';
+        return;
+    }
+
+    matchingSchedules.forEach(schedule => {
+        const scheduleItem = document.createElement('div');
+        scheduleItem.className = 'schedule-item';
+        scheduleItem.innerHTML = `
+            <strong>${schedule.train}</strong><br>
+            Departure: ${schedule.departureTime}<br>
+            Arrival: ${schedule.arrivalTime}<br>
+            Duration: ${schedule.duration}<br>
+            Classes: ${schedule.classes.join(', ')}
+        `;
+        resultsDiv.appendChild(scheduleItem);
+        resultsDiv.style.color = 'white';
+        resultsDiv.style.border = '1px solid #882dff';
+        resultsDiv.style.padding = '10px';
+        resultsDiv.style.borderRadius = '5px';
+    });
+
+    resultsDiv.style.display = 'block';
+
+    document.getElementById('departure').value = '';
+    document.getElementById('destination').value = '';
+    document.querySelectorAll('input[name="travelClass"]').forEach(cb => cb.checked = false);
+}
+
+// ! Task 8:
+const properties = [
+    {
+        name: "Ocean View Apartment",
+        type: "Apartment",
+        location: "Colombo 3",
+        price: 15000000,
+        bedrooms: 2,
+        description: "Modern apartment with sea view."
+    },
+    {
+        name: "Green Valley House",
+        type: "House",
+        location: "Nugegoda",
+        price: 25000000,
+        bedrooms: 4,
+        description: "Spacious house with large garden."
+    },
+    {
+        name: "Luxury Villa",
+        type: "Villa",
+        location: "Battaramulla",
+        price: 40000000,
+        bedrooms: 5,
+        description: "Elegant villa with private pool."
+    },
+    {
+        name: "City Loft Apartment",
+        type: "Apartment",
+        location: "Colombo 7",
+        price: 8000000,
+        bedrooms: 1,
+        description: "Cozy apartment in city center."
+    },
+    {
+        name: "Suburban Retreat House",
+        type: "House",
+        location: "Homagama",
+        price: 12000000,
+        bedrooms: 3,
+        description: "Comfortable house in quiet neighborhood."
+    }
+];
+
+function filterProperties() {
+    const selectedTypes = Array.from(document.querySelectorAll('input[name="propertyType"]:checked')).map(cb => cb.value);
+    const minBudget = parseFloat(document.getElementById('minBudget').value) || 0;
+    const maxBudget = parseFloat(document.getElementById('maxBudget').value) || Infinity;
+    const propertyList = document.getElementById('propertyList');
+
+    if (selectedTypes.length === 0 && !minBudget && !maxBudget) {
+        alert('Please select at least one property type or specify a budget range.');
+        return;
+    }
+
+    const filteredProperties = properties.filter(property => {
+        const typeMatch = selectedTypes.length === 0 || selectedTypes.includes(property.type);
+        const priceMatch = property.price >= minBudget && property.price <= maxBudget;
+        return typeMatch && priceMatch;
+    });
+
+    propertyList.innerHTML = '';
+    propertyList.style.display = 'none';
+
+    if (filteredProperties.length === 0) {
+        propertyList.innerHTML = '<p>No properties match your criteria.</p>';
+        propertyList.style.display = 'block';
+        return;
+    }
+
+    filteredProperties.forEach(property => {
+        const propertyItem = document.createElement('div');
+        propertyItem.className = 'property-item';
+        propertyItem.innerHTML = `
+            <strong>${property.name}</strong><br>
+            Type: ${property.type}<br>
+            Location: ${property.location}<br>
+            Price: LKR ${property.price.toLocaleString()}<br>
+            Bedrooms: ${property.bedrooms}<br>
+            Description: ${property.description}
+        `;
+        propertyList.appendChild(propertyItem);
+        propertyList.style.color = 'white';
+        propertyList.style.border = '1px solid #882dff';
+        propertyList.style.padding = '10px';
+        propertyList.style.borderRadius = '5px';
+    });
+
+    propertyList.style.display = 'block';
+
+    document.getElementById('minBudget').value = '';
+    document.getElementById('maxBudget').value = '';
+    document.querySelectorAll('input[name="propertyType"]').forEach(cb => cb.checked = false);
+}

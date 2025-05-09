@@ -220,9 +220,44 @@
 
     <!--! START-7 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Train Schedule Lookup <span>Task - 07</span></h1>
+      <div class="form-group">
+        <label for="departure">Departure Station</label>
+        <input
+          type="text"
+          id="departure"
+          placeholder="e.g., Colombo"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="destination">Destination Station</label>
+        <input
+          type="text"
+          id="destination"
+          placeholder="e.g., Kandy"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>Travel Class</label>
+        <div class="checkbox-group">
+          <label
+            ><input type="checkbox" name="travelClass" value="First Class" />
+            First Class</label
+          >
+          <label
+            ><input type="checkbox" name="travelClass" value="Second Class" />
+            Second Class</label
+          >
+          <label
+            ><input type="checkbox" name="travelClass" value="Third Class" />
+            Third Class</label
+          >
+        </div>
+      </div>
+      <button onclick="lookupSchedule()">Search Schedules</button>
+      <div id="scheduleResults"></div>
     </div>
     <!--! END -->
 
@@ -230,9 +265,44 @@
 
     <!--! START-8 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Real Estate Filter <span>Task - 08</span></h1>
+      <div class="form-group">
+        <label>Property Type</label>
+        <div class="checkbox-group">
+          <label
+            ><input type="checkbox" name="propertyType" value="Apartment" />
+            Apartment</label
+          >
+          <label
+            ><input type="checkbox" name="propertyType" value="House" />
+            House</label
+          >
+          <label
+            ><input type="checkbox" name="propertyType" value="Villa" />
+            Villa</label
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="minBudget">Minimum Budget (LKR)</label>
+        <input
+          type="number"
+          id="minBudget"
+          placeholder="e.g., 5000000"
+          min="0"
+        />
+      </div>
+      <div class="form-group">
+        <label for="maxBudget">Maximum Budget (LKR)</label>
+        <input
+          type="number"
+          id="maxBudget"
+          placeholder="e.g., 20000000"
+          min="0"
+        />
+      </div>
+      <button onclick="filterProperties()">Filter Properties</button>
+      <div id="propertyList"></div>
     </div>
     <!--! END -->
 
