@@ -428,3 +428,244 @@ function filterProperties() {
     document.getElementById('maxBudget').value = '';
     document.querySelectorAll('input[name="propertyType"]').forEach(cb => cb.checked = false);
 }
+
+// ! Task 9:
+function updateTicker() {
+    const headlinesInput = document.getElementById('headlines').value.trim();
+    const newsTicker = document.getElementById('newsTicker');
+
+    if (!headlinesInput) {
+        alert('Please enter at least one headline.');
+        return;
+    }
+
+    const headlines = headlinesInput.split('\n').map(line => line.trim()).filter(line => line);
+
+    newsTicker.innerHTML = '';
+    newsTicker.style.display = 'block';
+
+    headlines.forEach((headline, index) => {
+        const tickerItem = document.createElement('div');
+        tickerItem.className = 'ticker-item';
+        tickerItem.textContent = headline;
+        tickerItem.style.animationDelay = `${index * 10}s`;
+        newsTicker.appendChild(tickerItem);
+        newsTicker.style.color = 'yellow';
+        newsTicker.style.border = '1px solid #882dff';
+        newsTicker.style.padding = '10px';
+        newsTicker.style.borderRadius = '5px';
+    });
+
+    document.getElementById('headlines').value = '';
+}
+
+// ! Task 10:
+function submitRSVP() {
+    const name1 = document.getElementById('name1').value.trim();
+    const email1 = document.getElementById('email1').value.trim();
+    const attendance = document.getElementById('attendance').checked;
+    const confirmationDiv = document.getElementById('rsvpConfirmation');
+
+    if (!name1 || !email1) {
+        alert('Please fill in both name and email fields.');
+        return;
+    }
+    /*This uses a ternary operator (?:) to choose the message:
+    If attendance is true (checkbox checked, user is attending):
+    Message: "Thank you, ${name1}! Your attendance is confirmed for the event. A confirmation has been sent to ${email1}."
+    Example: For name1 = "John", email1 = "john@example.com", the message is:
+    "Thank you, John! Your attendance is confirmed for the event. A confirmation has been sent to john@example.com."
+    If attendance is false (checkbox unchecked, user is not attending):
+    Message: "Thank you, ${name1}. We have noted that you will not attend the event. Details have been sent to ${email1}."
+    Example: For name1 = "John", email1 = "john@example.com", the message is:
+    "Thank you, John. We have noted that you will not attend the event. Details have been sent to john@example.com."
+    The message is stored in the message variable.
+ */
+    const message = attendance
+        ? `Thank you, ${name1}! Your attendance is confirmed for the event. A confirmation has been sent to ${email1}.`
+        : `Thank you, ${name1}. We have noted that you will not attend the event. Details have been sent to ${email1}.`;
+
+    confirmationDiv.textContent = message;
+    confirmationDiv.style.display = 'block';
+
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('attendance').checked = true;
+    confirmationDiv.style.color = 'white';
+    confirmationDiv.style.border = '1px solid #882dff';
+    confirmationDiv.style.padding = '10px';
+    confirmationDiv.style.borderRadius = '5px';
+}
+
+// ! Task 11:
+let balance = 10000;
+
+function processTransaction() {
+    const amount2 = parseFloat(document.getElementById('amount2').value);
+    const transactionType = document.querySelector('input[name="transactionType"]:checked').value;
+    const balanceDisplay = document.getElementById('balanceDisplay');
+    const errorMessage = document.getElementById('errorMessage');
+
+    errorMessage.style.display = 'none';
+
+    if (isNaN(amount2) || amount2 <= 0) {
+        errorMessage.textContent = 'Please enter a valid positive amount.';
+        errorMessage.style.display = 'block';
+        errorMessage.style.color = 'red';
+        return;
+    }
+
+    if (transactionType === 'Withdrawal' && amount2 > balance) {
+        errorMessage.textContent = 'Insufficient funds for withdrawal.';
+        errorMessage.style.display = 'block';
+        errorMessage.style.color = 'red';
+        return;
+    }
+
+    if (transactionType === 'Deposit') {
+        balance += amount2;
+    } else {
+        balance -= amount2;
+    }
+
+    balanceDisplay.textContent = `Current Balance: LKR ${balance.toFixed(2)}`;
+    balanceDisplay.style.color = 'green'; // Set text color to green
+
+    document.getElementById('amount2').value = '';
+    document.querySelector('input[name="transactionType"][value="Deposit"]').checked = true;
+}
+
+// ! Task 12:
+const greetings = {
+    Sinhala: name => `ආයුබෝවන්, ${name}! ඔබට සුබ දවසක්!`,
+    Tamil: name => `வணக்கம், ${name}! உங்களுக்கு ஒரு நல்ல நாள்!`,
+    English: name => `Hello, ${name}! Have a great day!`
+};
+
+function generateGreeting() {
+    const name = document.getElementById('name12').value.trim();
+    const language = document.querySelector('input[name="language"]:checked').value;
+    const greetingMessage = document.getElementById('greetingMessage');
+
+    if (!name) {
+        alert('Please enter your name.');
+        return;
+    }
+
+    greetingMessage.textContent = greetings[language](name);
+    greetingMessage.style.display = 'block';
+    greetingMessage.style.color = 'green';
+    greetingMessage.style.border = '1px solid #882dff';
+    greetingMessage.style.padding = '10px';
+    greetingMessage.style.borderRadius = '5px';
+    greetingMessage.style.alignItems = 'center';
+
+    document.getElementById('name').value = '';
+    document.querySelector('input[name="language"][value="Sinhala"]').checked = true;
+}
+
+// ! Task 13:
+function calculateCountdown() {
+    const festivalDate = document.getElementById('festivalDate13').value;
+    const resultDiv13 = document.getElementById('countdownResult');
+
+    if (!festivalDate) {
+        alert('Please select a festival date.');
+        return;
+    }
+
+    const today = new Date();
+    const targetDate = new Date(festivalDate);
+    today.setHours(0, 0, 0, 0);
+    targetDate.setHours(0, 0, 0, 0);
+
+    const timeDiff = targetDate - today;
+    const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+    resultDiv13.style.display = 'block';
+
+    if (daysLeft > 0) {
+        resultDiv13.textContent = `${daysLeft} day${daysLeft === 1 ? '' : 's'} left until the festival on ${festivalDate}.`;
+        resultDiv13.style.color = 'green';
+    } else if (daysLeft === 0) {
+        resultDiv13.textContent = 'The festival is today!';
+        resultDiv13.style.color = 'blue';
+    } else {
+        resultDiv13.textContent = 'The festival date has already passed.';
+        resultDiv13.style.color = 'red';
+    }
+
+    document.getElementById('festivalDate13').value = '';
+}
+
+// ! Task 14:
+function submitActivities() {
+    const activities = Array.from(document.querySelectorAll('input[name="activity"]:checked')).map(checkbox => checkbox.value);
+    const additionalActivity = document.getElementById('additionalActivity').value.trim();
+    const summaryDiv = document.getElementById('activitySummary');
+    const selectedActivities = document.getElementById('selectedActivities');
+    const additional = document.getElementById('additional');
+
+    if (activities.length === 0 && !additionalActivity) {
+        alert('Please select at least one activity or enter an additional activity.');
+        return;
+    }
+
+    selectedActivities.textContent = activities.length > 0
+        ? `Activities: ${activities.join(', ')}`
+        : 'Activities: None selected';
+
+    additional.textContent = additionalActivity
+        ? `Additional Activity: ${additionalActivity}`
+        : 'Additional Activity: None';
+
+    summaryDiv.style.display = 'block';
+    summaryDiv.style.color = 'green'; // Set text color to white
+    summaryDiv.style.border = '1px solid #882dff';
+    summaryDiv.style.padding = '10px';
+    summaryDiv.style.borderRadius = '5px';
+
+    document.getElementById('additionalActivity').value = '';
+    document.querySelectorAll('input[name="activity"]').forEach(checkbox => checkbox.checked = false);
+}
+
+// ! Task 15:
+function submitReservation() {
+    const name = document.getElementById('name15').value.trim();
+    const date = document.getElementById('date15').value;
+    const time = document.getElementById('time15').value;
+    const people = document.getElementById('people15').value;
+    const preferences = Array.from(document.querySelectorAll('input[name="mealPreference"]:checked')).map(cb => cb.value);
+
+    const summaryDiv = document.getElementById('reservationSummary');
+    const summaryName = document.getElementById('summaryName');
+    const summaryDate = document.getElementById('summaryDate');
+    const summaryTime = document.getElementById('summaryTime');
+    const summaryPeople = document.getElementById('summaryPeople');
+    const summaryPreferences = document.getElementById('summaryPreferences');
+
+    if (!name || !date || !time || !people) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+
+    summaryName.textContent = `Name: ${name}`;
+    summaryDate.textContent = `Date: ${date}`;
+    summaryTime.textContent = `Time: ${time}`;
+    summaryPeople.textContent = `Number of People: ${people}`;
+    summaryPreferences.textContent = preferences.length > 0
+        ? `Meal Preferences: ${preferences.join(', ')}`
+        : 'Meal Preferences: None';
+
+    summaryDiv.style.display = 'block';
+    summaryDiv.style.color = 'white'; // Set text color to white
+    summaryDiv.style.border = '1px solid #882dff';
+    summaryDiv.style.padding = '10px';
+    summaryDiv.style.borderRadius = '5px';
+
+    document.getElementById('name').value = '';
+    document.getElementById('date').value = '';
+    document.getElementById('time').value = '';
+    document.getElementById('people').value = '';
+    document.querySelectorAll('input[name="mealPreference"]').forEach(cb => cb.checked = false);
+}

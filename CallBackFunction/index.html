@@ -6,6 +6,17 @@
     <title>Document</title>
   </head>
   <body>
-    <script></script>
+    <p>result is: <span id="result"></span></p>
+    <script>
+      function addNumbers(number, callback) {
+        let sum;
+        sum = number + 1;
+        callback(sum);
+      }
+      function displayResult(result) {
+        document.getElementById("result").innerText = result;
+      }
+      addNumbers(8, displayResult); // 6
+    </script>
   </body>
 </html>

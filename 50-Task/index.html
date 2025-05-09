@@ -310,9 +310,17 @@
 
     <!--! START-9 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Local News Ticker Setup <span>Task - 09</span></h1>
+      <div class="form-group">
+        <label for="headlines">Paste News Headlines (one per line)</label>
+        <textarea
+          id="headlines"
+          rows="5"
+          placeholder="Enter headlines, one per line"
+        ></textarea>
+      </div>
+      <button onclick="updateTicker()">Update Ticker</button>
+      <div id="newsTicker"></div>
     </div>
     <!--! END -->
 
@@ -320,9 +328,27 @@
 
     <!--! START-10 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Event RSVP <span>Task - 10</span></h1>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name1" placeholder="Enter your name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email1"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" id="attendance" checked /> Confirm attendance
+        </label>
+      </div>
+      <button onclick="submitRSVP()">Submit RSVP</button>
+      <div id="rsvpConfirmation"></div>
     </div>
     <!--! END -->
 
@@ -330,9 +356,39 @@
 
     <!--! START-11 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Bank Transaction Simulator <span>Task - 11</span></h1>
+      <div class="form-group">
+        <label for="amount">Amount (LKR)</label>
+        <input
+          type="number"
+          id="amount2"
+          placeholder="Enter amount"
+          min="0"
+          step="any"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>Transaction Type</label>
+        <div class="radio-group">
+          <label
+            ><input
+              type="radio"
+              name="transactionType"
+              value="Deposit"
+              checked
+            />
+            Deposit</label
+          >
+          <label
+            ><input type="radio" name="transactionType" value="Withdrawal" />
+            Withdrawal</label
+          >
+        </div>
+      </div>
+      <button onclick="processTransaction()">Process Transaction</button>
+      <div id="balanceDisplay">Current Balance: LKR 10000.00</div>
+      <div id="errorMessage"></div>
     </div>
     <!--! END -->
 
@@ -340,9 +396,29 @@
 
     <!--! START-12 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Bilingual Greeting Generator <span>Task - 12</span></h1>
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name12" placeholder="Enter your name" required />
+      </div>
+      <div class="form-group">
+        <label>Select Language</label>
+        <div class="radio-group">
+          <label
+            ><input type="radio" name="language" value="Sinhala" checked />
+            Sinhala</label
+          >
+          <label
+            ><input type="radio" name="language" value="Tamil" /> Tamil</label
+          >
+          <label
+            ><input type="radio" name="language" value="English" />
+            English</label
+          >
+        </div>
+      </div>
+      <button onclick="generateGreeting()">Generate Greeting</button>
+      <div id="greetingMessage"></div>
     </div>
     <!--! END -->
 
@@ -350,9 +426,15 @@
 
     <!--! START-13 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Festival Countdown Timer <span>Task - 13</span></h1>
+      <div class="form-group">
+        <label for="festivalDate13"
+          >Festival Date (e.g., Kandy Esala Perahera)</label
+        >
+        <input type="date" id="festivalDate" required />
+      </div>
+      <button onclick="calculateCountdown()">Calculate Countdown</button>
+      <div id="countdownResult"></div>
     </div>
     <!--! END -->
 
@@ -360,9 +442,54 @@
 
     <!--! START-14 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Eco-Tourism Activity Selector <span>Task - 14</span></h1>
+      <div class="form-group">
+        <label>Select Activities</label>
+        <div class="checkbox-group">
+          <label
+            ><input
+              type="checkbox"
+              name="activity"
+              value="Bird Watching in Sinharaja"
+            />
+            Bird Watching in Sinharaja</label
+          >
+          <label
+            ><input type="checkbox" name="activity" value="Safari in Yala" />
+            Safari in Yala</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              name="activity"
+              value="Trekking in Horton Plains"
+            />
+            Trekking in Horton Plains</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              name="activity"
+              value="Whale Watching in Mirissa"
+            />
+            Whale Watching in Mirissa</label
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="additionalActivity">Additional Activity</label>
+        <input
+          type="text"
+          id="additionalActivity"
+          placeholder="Enter any other activity"
+        />
+      </div>
+      <button onclick="submitActivities()">Submit Selection</button>
+      <div id="activitySummary">
+        <h3 style="color: green">Selected Activities</h3>
+        <p id="selectedActivities"></p>
+        <p id="additional"></p>
+      </div>
     </div>
     <!--! END -->
 
@@ -370,9 +497,55 @@
 
     <!--! START-15 -->
     <div class="box">
-      <h1>Tea Plantation Inventory <span>Task - 03</span></h1>
-      <form id="attraction-form"></form>
-      <div id="plantationList"></div>
+      <h1>Restaurant Reservation <span>Task - 15</span></h1>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name15" placeholder="Enter your name" required />
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date15" required />
+      </div>
+      <div class="form-group">
+        <label for="time">Time</label>
+        <input type="time" id="time15" required />
+      </div>
+      <div class="form-group">
+        <label for="people">Number of People</label>
+        <input
+          type="number"
+          id="people15"
+          placeholder="Enter number of people"
+          min="1"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>Meal Preferences</label>
+        <div class="checkbox-group">
+          <label
+            ><input type="checkbox" name="mealPreference" value="Vegetarian" />
+            Vegetarian</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              name="mealPreference"
+              value="Non-Vegetarian"
+            />
+            Non-Vegetarian</label
+          >
+        </div>
+      </div>
+      <button onclick="submitReservation()">Submit Reservation</button>
+      <div id="reservationSummary">
+        <h3 style="color: #ce99ff">Reservation Summary</h3>
+        <p id="summaryName"></p>
+        <p id="summaryDate"></p>
+        <p id="summaryTime"></p>
+        <p id="summaryPeople"></p>
+        <p id="summaryPreferences"></p>
+      </div>
     </div>
     <!--! END -->
 

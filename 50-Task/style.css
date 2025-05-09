@@ -82,7 +82,7 @@ form{
     width: 100%;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="number"], [type="date"]{
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], [type="date"], [type="time"]{
     width: 100%;
     padding: 10px;
     border-radius: 5px;
@@ -104,7 +104,7 @@ textarea{
     border: none;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus, [type="date"]:focus{
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus, [type="date"]:focus, [type="time"]:focus{
     outline: none;
     border: 1px solid #992dff;
 }
@@ -158,4 +158,36 @@ button:hover{
 
 ::-webkit-scrollbar-thumb:hover {
     background: #5d00d6;
+}
+#newsTicker {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #11091f;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    display: none;
+}
+
+.ticker-item {
+    position: absolute;
+    width: 100%;
+    white-space: nowrap;
+    animation: ticker 10s linear infinite;
+}
+@keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+#balanceDisplay{
+    color: #ffffff;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 20px;
+}
+#errorMessage{
+    text-align: center;
+}
+#greetingMessage{
+    text-align: center;
 }
