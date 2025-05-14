@@ -1075,6 +1075,7 @@ function generateTicket() {
     if (!passengerName || !journey) {
         errorMessage.textContent = 'Please enter a name and select a journey.';
         errorMessage.style.display = 'block';
+        errorMessage.style.color = 'red';
         return;
     }
 
