@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background: #212121;
+        color: #fff;
+        text-align: center;
+      }
+      button {
+        margin: 10px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Timing Events</h1>
+    <div id="timer"></div>
+    <button id="btn">setTimeOut & clearTimeOut</button>
+    <br />
+    <button id="btn2">setInterval & clearInterval</button>
+    <script>
+      //! setInterval
+      const timer = document.getElementById("timer");
+
+      const getTime = () => {
+        const date = new Date();
+        timer.innerHTML = date.toLocaleTimeString();
+      };
+      //   let a = setInterval(getTime, 1000);
+
+      //! clearInterval
+      const btn2 = document.getElementById("btn2");
+      btn2.addEventListener("click", () => {
+        clearInterval(a);
+      });
+
+      //! setTimeout
+      const btn = document.getElementById("btn");
+
+      function showAlert() {
+        alert("Hello, this is a timeout alert!");
+      }
+      btn.addEventListener("click", () => {
+        const a = setTimeout(showAlert, 2000);
+        // clearTimeout(a);
+      });
+
+      //   ! clearTimeout
+      btn.addEventListener("click", () => {
+        clearTimeout(a);
+      });
+    </script>
+  </body>
+</html>

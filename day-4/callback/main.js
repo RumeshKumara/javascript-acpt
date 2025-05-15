@@ -8,4 +8,4 @@ const result = (p1) => {
     document.getElementById("result").innerHTML = p1;
 }
 
-addNumbers(2, 10, result);
+addNumbers(6, 10, result);
