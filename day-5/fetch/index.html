@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-gray-100 min-h-screen flex flex-col items-center justify-center"
+  >
+    <h1 class="text-3xl font-bold">Fetch</h1>
+
+    <button
+      onclick="fetchData()"
+      class="bg-blue-500 text-white font-bold py-2 px-4 rounded"
+    >
+      get Data
+    </button>
+    <br />
+    <button
+      onclick="postData()"
+      class="bg-green-500 text-white font-bold py-2 px-4 rounded"
+    >
+      postData
+    </button>
+    <br />
+    <button
+      onclick="putData()"
+      class="bg-pink-500 text-white font-bold py-2 px-4 rounded"
+    >
+      putData
+    </button>
+    <br />
+    <button
+      onclick="deleteData()"
+      class="bg-red-500 text-white font-bold py-2 px-4 rounded"
+    >
+      deleteData
+    </button>
+    <script src="script.js"></script>
+  </body>
+</html>
