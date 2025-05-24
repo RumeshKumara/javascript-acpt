@@ -10,20 +10,41 @@
     <h1 class="text-4xl font-bold text-center mt-10 text-pink-700">
       Explore Companies
     </h1>
-    <p class="text-gray-600 text-center">
-      Select a company to view its details.
-    </p>
-    <div class="flex items-center justify-center mt-4">
-      <select
-        name="posts"
-        id="posts"
-        class="border border-gray-300 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-pink-500"
+    <!-- Cards container -->
+    <div class="flex justify-center mt-8">
+      <div
+        class="bg-pink-700 rounded-lg shadow-md w-[28rem] p-6 flex items-center justify-between"
       >
-        <option value="" id="option">Companies</option>
-        <!-- options will be populated by JS -->
-      </select>
+        <div>
+          <h2 class="text-xl font-semibold text-pink-200">Companies</h2>
+        </div>
+        <button id="dropdownBtn" class="ml-4 focus:outline-none">
+          <!-- Dropdown icon (chevron down) -->
+          <svg
+            id="dropdownIcon"
+            class="w-6 h-6 text-pink-500 transition-transform duration-200"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
-
+    <!-- Company cards list -->
+    <div
+      id="companyCards"
+      class="flex flex-col items-center gap-4 mt-6 overflow-hidden transition-all duration-500 ease-in-out"
+      style="max-height: 0; opacity: 0"
+    >
+      <!-- Company cards will be rendered here by main.js -->
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
