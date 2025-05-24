@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <h1 class="text-4xl font-bold text-center mt-10 text-pink-700">
+      Explore Companies
+    </h1>
+    <p class="text-gray-600 text-center">
+      Select a company to view its details.
+    </p>
+    <div class="flex items-center justify-center mt-4">
+      <select
+        name="posts"
+        id="posts"
+        class="border border-gray-300 rounded-md p-4 focus:outline-none focus:ring-2 focus:ring-pink-500"
+      >
+        <option value="" id="option">Companies</option>
+        <!-- options will be populated by JS -->
+      </select>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
