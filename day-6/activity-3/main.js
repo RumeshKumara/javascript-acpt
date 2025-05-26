@@ -7,7 +7,7 @@ async function loadCompanies() {
   const data = await res.json();
   // data should be an array of companies
   cards.innerHTML = data.map((company, idx) => `
-    <div class="bg-sky-700 rounded-lg shadow w-[26rem] p-5 flex flex-col">
+    <div class="bg-sky-600 rounded-lg shadow w-[26rem] p-5 flex flex-col">
     <div class="flex items-center justify-between">
     <div class="flex items-center">
     
@@ -45,12 +45,12 @@ async function loadCompanies() {
     
       <div
         id="dept-list-${idx}"
-        class="mt-3 ml-8 list-none text-gray-700 text-sm overflow-hidden transition-all duration-500 ease-in-out bg-green-600 rounded-lg p-3"
+        class="mt-3 ml-8 list-none text-purple-200 text-sm overflow-hidden transition-all duration-500 ease-in-out bg-purple-600 rounded-lg p-3 text-center"
         style="max-height: 0; opacity: 0"
       >
         ${(company.departments || []).map((dept, dIdx) => `
-          <div class="mb-2">
-            <div class="flex items-center justify-between">
+          <div class="">
+            <div class="flex items-center justify-between border-b-purple-500 border-b-2 pb-1">
               <span class="font-semibold">${typeof dept === "object" ? dept.name : dept}</span>
               <button
                 class="ml-2 focus:outline-none skill-dropdown-btn"
@@ -58,7 +58,7 @@ async function loadCompanies() {
                 type="button"
               >
                 <svg
-                  class="w-5 h-5 text-pink-500 transition-transform duration-200"
+                  class="w-5 h-5 text-purple-300 transition-transform duration-200"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="2"
@@ -74,12 +74,24 @@ async function loadCompanies() {
             </div>
             <div
               id="skill-list-${idx}-${dIdx}"
-              class="ml-8 mt-1 list-disc text-gray-600 text-xs overflow-hidden transition-all duration-500 ease-in-out"
+              class="ml-8 mt-1 list-disc text-blue-800 text-xs overflow-hidden transition-all duration-500 ease-in-out"
               style="max-height: 0; opacity: 0"
             >
-              ${(typeof dept === "object" && Array.isArray(dept.skills))
-      ? dept.skills.map(skill => `<div>${skill}</div>`).join("")
-      : ""
+              ${(typeof dept === "object" && Array.isArray(dept.employees))
+      ? dept.employees.map(emp =>
+        `<div>
+                        <span class="font-bold text-lg">${emp.name}</span>
+                        <span class="italic text-gray-200">(${emp.position})</span>
+                        <div class="ml-4 font-bold text-purple-200">
+                        Skills:
+                          ${Array.isArray(emp.skills) && emp.skills.length > 0
+          ? emp.skills.map(skill => `<div class="text-purple-300 bg-purple-900 p-2 m-2 rounded-lg ">${skill}</div>`).join("")
+          : "<div>No skills</div>"
+        }
+                        </div>
+                      </div>`
+      ).join("")
+      : "<div>No employees</div>"
     }
             </div>
           </div>
