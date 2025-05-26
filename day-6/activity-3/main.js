@@ -7,7 +7,7 @@ async function loadCompanies() {
   const data = await res.json();
   // data should be an array of companies
   cards.innerHTML = data.map((company, idx) => `
-    <div class="bg-[#001b43] rounded-lg shadow w-[26rem] p-5 flex flex-col">
+    <div class="bg-[#001b43] rounded-lg shadow w-[26rem] p-5 flex flex-col border-1 border-sky-400 border-solid">
     <div class="flex items-center justify-between">
     <div class="flex items-center">
     
@@ -20,7 +20,7 @@ async function loadCompanies() {
     </div>
     <div class="flex items-center justify-between bg-yellow-500 rounded-lg p-3 mt-3">
     <div>
-    <h1 class="text-lg font-bold text-yellow-800">Departments</h1>
+    <h1 class="text-lg font-bold text-yellow-800"><span class="text-purple-100 pr-1">🔶</span>Departments</h1>
     </div>
     <button
           class="ml-4 focus:outline-none dept-dropdown-btn"
@@ -45,13 +45,13 @@ async function loadCompanies() {
     
       <div
         id="dept-list-${idx}"
-        class="mt-3 ml-4 list-none text-purple-300 text-sm overflow-hidden transition-all duration-500 ease-in-out bg-[#37006b] rounded-lg p-3 w-[22rem]"
+        class="mt-3 ml-4 list-none text-purple-500 text-sm overflow-hidden transition-all duration-500 ease-in-out bg-[#37006b] rounded-lg p-3 w-[22rem]"
         style="max-height: 0; opacity: 0"
       >
         ${(company.departments || []).map((dept, dIdx) => `
           <div class="">
-            <div class="flex items-center justify-between border-b-purple-800 border-b-2 pb-1">
-              <span class="font-semibold">${typeof dept === "object" ? dept.name : dept}</span>
+            <div class="flex items-center justify-between border-[#e9e9e92a] border-b-2 pb-1">
+              <span class="font-semibold text-lg"><span class="text-purple-100 pr-1">⚛️</span>${typeof dept === "object" ? dept.name : dept}</span>
               <button
                 class="ml-2 focus:outline-none skill-dropdown-btn"
                 data-target="skill-list-${idx}-${dIdx}"
@@ -80,12 +80,12 @@ async function loadCompanies() {
               ${(typeof dept === "object" && Array.isArray(dept.employees))
       ? dept.employees.map(emp =>
         `<div>
-                        <span class="font-bold text-lg">${emp.name}</span>
-                        <span class="italic text-gray-200">(${emp.position})</span>
-                        <div class="ml-4 font-bold text-purple-200">
+                        <span class="font-bold text-lg"><span class="text-purple-100 pr-1">🔻</span>${emp.name}</span>
+                        <span class=" text-pink-400 bg-[#3a0041] p-1 px-2 rounded-lg">${emp.position}</span>
+                        <div class="ml-4 font-bold text-sky-400">
                         Skills:
                           ${Array.isArray(emp.skills) && emp.skills.length > 0
-          ? emp.skills.map(skill => `<div class="text-purple-300 bg-purple-900 p-2 m-2 rounded-lg ">${skill}</div>`).join("")
+          ? emp.skills.map(skill => `<div class="text-sky-300 bg-[#1e0046] p-2 m-2 rounded-lg "><span class="text-purple-100 pr-1">💠</span>${skill}</div>`).join("")
           : "<div>No skills</div>"
         }
                         </div>
